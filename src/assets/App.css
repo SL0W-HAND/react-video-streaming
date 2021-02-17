@@ -1,33 +1,43 @@
+:root{
+  --font-size:20px;
+  --font-size-2:16px;
+  --font-1:sans-serif, Helvetica ,Arial;
+  --font-2:Helvetica;
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
+.nav {
+  width: 100%;
+}
 
-.container{
-  max-width: 950px;
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0 auto;
-} 
-.video_card {
-  height: 9rem;
-  width: 15rem;
-  border-radius: 4px;
-  border: solid black;
-  margin:5px;
+.contain {
   display: flex;
-  align-items:flex-end;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.card{
+  width:15rem;
+  border-radius: 5px;
+  margin: 10px;
 }
 
-.card-body p{
-  font-size: 1rem;
-  color: white;
+.card-img-top{
+  height: 10rem;
 }
 
-.card-body p:hover{
-  background-color: blue;
+.card-text{
+  font-family: var(--font-2);
+  font-size: var(--font-size-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -21,18 +21,21 @@ export default class Home extends Component {
     render() {
         return (
             <div className="App">
-                    <div className="container">
+                <nav className='nav'>
+                    <Link to='Home'>
+                        <h1>Home</h1>
+                    </Link>
+                </nav>
+                    <div className="contain">
                         {this.state.videos.map(video =>
-                            <div className="video_card" key={video.id}>
-                                <Link style={{ textDecoration: 'none' }} to={`/player/${video.id}`}>
-                                    <div>
-                                        <img src={`http://${serverIp}:4000${video.poster}`} alt={video.name} />
-                                        <div className="card-body">
-                                            <p>{video.name}</p>
-                                        </div>
+                            <Link key={video.id} style={{ textDecoration: 'none' }} to={`/player/${video.id}`}>
+                                <div className="card" >
+                                    <img className="card-img-top" src={`http://${serverIp}:4000/video/${video.id}/poster`} alt={video.name}/>
+                                    <div className="card-body">
+                                        <p className="card-text">{video.name}</p>
                                     </div>
-                                </Link>
-                            </div>
+                                </div>
+                            </Link>
                         )}
                     </div>
             </div>
