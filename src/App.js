@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home.js';
 import Player from './pages/Player.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/App.css';
 
 function App() {
