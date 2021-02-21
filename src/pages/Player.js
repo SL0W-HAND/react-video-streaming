@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import serverIp from '../ipConfig.js';
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar'
 
 export default class Player extends Component {
     constructor(props) {
@@ -23,11 +23,7 @@ export default class Player extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                <nav className='nav'>
-                    <Link to='Home'>
-                        <h1>Home</h1>
-                    </Link>
-                </nav>
+                <Navbar/>
                 </header>
                 <video controls muted autoPlay>
                     <source src={`http://${serverIp}:4000/video/${this.state.videoId}`} type="video/mp4"></source>
