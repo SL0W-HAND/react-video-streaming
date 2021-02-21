@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import serverIp from '../ipConfig.js';
+import Navbar from '../components/Navbar'
 
 export default class Home extends Component {
     constructor() {
@@ -21,23 +22,20 @@ export default class Home extends Component {
     render() {
         return (
             <div className="App">
-                <nav className='nav'>
-                    <Link to='Home'>
-                        <h1>Home</h1>
-                    </Link>
-                </nav>
-                    <div className="contain">
-                        {this.state.videos.map(video =>
-                            <Link key={video.id} style={{ textDecoration: 'none' }} to={`/player/${video.id}`}>
-                                <div className="card" >
-                                    <img className="card-img-top" src={`http://${serverIp}:4000/video/${video.id}/poster`} alt={video.name}/>
-                                    <div className="card-body">
-                                        <p className="card-text">{video.name}</p>
-                                    </div>
+                <Navbar/>
+                <div className="container">
+                    {this.state.videos.map(video =>
+                    <div className="card" >
+                        <Link key={video.id} style={{ textDecoration: 'none' }} to={`/player/${video.id}`}>
+                                <img className="card-img-top" src={`http://${serverIp}:4000/video/${video.id}/poster`} alt={video.name}/>
+                                <div className="card-body">
+                                    <p className="card-text">{video.name}</p>
                                 </div>
-                            </Link>
-                        )}
-                    </div>
+                            
+                        </Link>
+                        </div>
+                    )}
+                </div>
             </div>
         )
     }
