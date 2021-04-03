@@ -5,7 +5,7 @@
   --font-2:Helvetica;
   --primary_color:#f4f9f9;
   --second_color:#ccf2f4;
-  --third_color:#a4ebf3;
+  --third_color:hsl(186, 77%, 80%);
   --fourth_color:#aaaaaa;
 }
 
@@ -21,14 +21,14 @@ body {
   padding: 0 auto;
 }
 
-.nav {
+.header {
   display: flex;
   width: 100%;
   background-color:var(--third_color);
   justify-content: center;
 }
 
-.nav_container {
+.nav {
   background-color: red;
   display: flex;
   justify-content: space-between;
@@ -37,9 +37,10 @@ body {
   margin: 0 3%;
 }
 
-.nav_container div {
+.nav div {
   display: flex;
 }
+
 .app_logo{
   width: 5rem;
   height: 5rem;
