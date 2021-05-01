@@ -24,19 +24,12 @@ class Home extends Component {
         } catch (error) {
             console.log(error);
         }
-
-        this.setState({lol:this.props.lol,videos:this.props.videos, serverIp: this.props.serverIp,favList:this.props.favList})
+        this.setState({lol:this.props.lol,videos:this.props.videos, serverIp: this.props.serverIp,favList:this.props.favList});
     }
     render() {
         return (
         <div>
-        
-                
                 <FavoriteVideos serverIp={this.state.serverIp} videos={this.props.favList}/>
-            
-             
-          
-                
                 <div className="container">
                     {this.state.videos.map(video =>
                         <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
@@ -58,4 +51,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,null)(Home)
+export default connect(mapStateToProps,null)(Home);
