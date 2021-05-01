@@ -5,5 +5,5 @@ export const setFavorite = payload => ({
 
 export const deleateFavorite = payload => ({
     type:'DELEATE_FAVORITE',
-    payload
-})
+    payload,
+});

@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {setFavorite, deleateFavorite} from '../actions'
 
-const VideoCard = ({name, serverIp, id, setFavorite}) => {
+const VideoCard = ({name, serverIp, id, setFavorite, deleateFavorite, isList}) => {
     const handleSetFavorite = () => {
         setFavorite({
             name, serverIp, id
         })
+    }
+
+    const handelDeleateFavorite = () => {
+        deleateFavorite(id)
     }
     
     return (
@@ -20,8 +24,10 @@ const VideoCard = ({name, serverIp, id, setFavorite}) => {
                 </div>
                 
         </Link>
-        <button onClick={handleSetFavorite}>plus</button>
-    
+        {isList ?
+            <button onClick={handelDeleateFavorite}>minus</button> : 
+            <button onClick={handleSetFavorite}>plus</button>
+        }
     </div>
     )
 }
@@ -29,7 +35,7 @@ const VideoCard = ({name, serverIp, id, setFavorite}) => {
 VideoCard.propTypes = {
     serverIp: PropTypes.string,
     name: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number
 }
 
 const mapDispatchToProps = {

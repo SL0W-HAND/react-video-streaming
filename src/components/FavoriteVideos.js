@@ -8,7 +8,7 @@ const FavoriteVideos = ({videos,serverIp}) => {
         {videos.length?
         <div className="container">
                 {videos.map(video =>
-                    <VideoCard key={video.id}  {...video} serverIp={serverIp}/>
+                    <VideoCard key={video.id}  {...video} serverIp={serverIp} isList/>
                 )}
         </div>
         :null}
