@@ -1,21 +1,24 @@
 import React, { useState }  from 'react';
+import {connect} from 'react-redux';
+import { loginRequest} from '../actions';
 
-const Login = () => {
+const Login = props => {
 	const [form,setValues] = useState({
 		email:'',
-	})
+	});
 
 	const handleInput = event => {
 		setValues({
 			...form,
 			[event.target.name]: event.target.value
-		})
-	}
+		});
+	};
 
 	const handleSubmit = event =>{
-		event.preventDefault()
-		console.log(form)
-	}
+		event.preventDefault();
+		props.loginRequest(form);
+		props.history.push('/');
+	};
 
 
     return (
@@ -62,4 +65,8 @@ const Login = () => {
     )
 }
 
-export default Login
+const mapDispatchToProps = {
+	loginRequest,
+};
+
+export default connect(null,mapDispatchToProps)(Login);
