@@ -28,7 +28,7 @@ const data = [
   }
 ]
 
-const initialState = {"lol":'chill','videos':data, 'serverIp':serverIp, 'favList':[]}
+const initialState = {"lol":'chill','user':{},'videos':data, 'serverIp':serverIp, 'favList':[]}
 
 const store = createStore(reducer, initialState)
 

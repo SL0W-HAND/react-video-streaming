@@ -9,6 +9,11 @@ const reducer = (state,action) => {
             return {
                 ...state,
                 favList: state.favList.filter(items => items.id !== action.payload)
+            }
+        case 'LOGIN_REQUEST':
+            return {
+                ...state,
+                user: action.payload,
             } 
         default:
             return state

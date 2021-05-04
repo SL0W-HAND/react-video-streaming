@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home.js';
 import Player from './pages/Player.js';
-import login from './pages/login.js'
+import login from './pages/Login.js'
 import NotFound from './pages/NotFound.js';
 import Layout from './components/Layout'
 import 'bootstrap/dist/css/bootstrap.min.css';
