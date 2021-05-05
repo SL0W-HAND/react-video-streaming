@@ -24,7 +24,12 @@ class Home extends Component {
         } catch (error) {
             console.log(error);
         }
-        this.setState({lol:this.props.lol,videos:this.props.videos, serverIp: this.props.serverIp,favList:this.props.favList});
+        this.setState({
+            lol:this.props.lol,
+            videos:this.props.videos, 
+            serverIp: this.props.serverIp,
+            favList:this.props.favList
+        });
     }
     render() {
         return (
