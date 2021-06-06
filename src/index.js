@@ -9,22 +9,39 @@ import reducer from './reducers/index'
 import serverIp from './ipConfig.js';
 
 //the error is herex
-
+async function fetchData() {
+  const response = await fetch(`http://${serverIp}:4000/videos`);
+  const data1 = await response.json();
+  console.log(data1)
+  return{
+    data1
+  }
+   
+}
 const data = [
   {
       "id": 0,
-      "name": "All Along The Watchtower.mp4",
-      "duration": 246.288
+      "name": "All Along The Watchtower(360P)_1.mp4",
+      "duration": 246.287708,
+      "path": "C:\\Users\\US3R\\Desktop\\vid\\All Along The Watchtower(360P)_1.mp4"
   },
   {
       "id": 1,
-      "name": "Guitar Flex on Instagram_ _Haha_ Can you relate_ ➖(MP4).mp4",
-      "duration": 16.433984
+      "name": "Bee Gees - Stayin_ Alive (Official Music Video)(360P)_1.mp4",
+      "duration": 249.5,
+      "path": "C:\\Users\\US3R\\Desktop\\vid\\Bee Gees - Stayin_ Alive (Official Music Video)(360P)_1.mp4"
   },
   {
       "id": 2,
-      "name": "Our Third Dimension on Instagram_ _Spectacular exp(MP4).mp4",
-      "duration": 7.3
+      "name": "Eric Clapton - I Shot The Sheriff [Crossroads 2010] (Official Live Video)(360P)_1.mp4",
+      "duration": 508.508,
+      "path": "C:\\Users\\US3R\\Desktop\\vid\\Eric Clapton - I Shot The Sheriff [Crossroads 2010] (Official Live Video)(360P)_1.mp4"
+  },
+  {
+      "id": 3,
+      "name": "Little Wing(360P)_1.mp4",
+      "duration": 151.458333,
+      "path": "C:\\Users\\US3R\\Desktop\\vid\\Little Wing(360P)_1.mp4"
   }
 ]
 
