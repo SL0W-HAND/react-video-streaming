@@ -15,6 +15,9 @@ class Navbar extends Component {
     componentDidMount(){
         this.setState({user:this.props.user})
     }
+
+
+
     render() {
         return (
             <header className='header'>
@@ -31,7 +34,7 @@ class Navbar extends Component {
                         </Link>                       
                     </div>    
                     <from className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </from>
                 </nav>

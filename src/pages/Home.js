@@ -37,8 +37,8 @@ class Home extends Component {
                 <FavoriteVideos serverIp={this.state.serverIp} videos={this.props.favList}/>
                 <div className="container">
                     {this.state.videos.map(video =>
-                        <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
-                    )}
+                            <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
+                        )}
                     <h1>{this.state.lol}</h1>
                 </div>
             
@@ -57,3 +57,8 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps,null)(Home);
+/*
+{this.state.videos.map(video =>
+                        <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
+                    )}
+*/
