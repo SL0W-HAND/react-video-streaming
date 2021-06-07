@@ -62,8 +62,8 @@ const Login = props => {
 				</p>
 			</section>
 		</section>
-    )
-}
+    );
+};
 
 const mapDispatchToProps = {
 	loginRequest,

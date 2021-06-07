@@ -8,9 +8,9 @@ import Home from './pages/Home.js';
 import Player from './pages/Player.js';
 import login from './pages/login.js'
 import NotFound from './pages/NotFound.js';
+import Results from './pages/Results.js';
 import Layout from './components/Layout'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/variables.css';
 
 function App() {
     return (
@@ -20,6 +20,7 @@ function App() {
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/login" component={login}/>
                     <Route exact path="/player/:id" component={Player}/>
+                    <Route exact path="/search/:id" component={Results}/>
                     <Route component={NotFound}/>
                 </Switch>
             </Layout>

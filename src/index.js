@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducer from './reducers/index'
+import reducer from './reducers/index';
 import serverIp from './ipConfig.js';
 
 //the error is herex
@@ -18,6 +17,7 @@ async function fetchData() {
   }
    
 }
+
 const data = [
   {
       "id": 0,
@@ -45,7 +45,7 @@ const data = [
   }
 ]
 
-const initialState = {"lol":'chill','user':{},'videos':data, 'serverIp':serverIp, 'favList':[]}
+const initialState = {'user':{},'videos':data, 'serverIp':serverIp, 'favList':[]}
 
 const store = createStore(reducer, initialState)
 
