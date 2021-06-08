@@ -3,51 +3,34 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore,compose } from 'redux';
 import reducer from './reducers/index';
 import serverIp from './ipConfig.js';
+import axios from 'axios';
 
-//the error is herex
-async function fetchData() {
-  const response = await fetch(`http://${serverIp}:4000/videos`);
-  const data1 = await response.json();
-  console.log(data1)
-  return{
-    data1
-  }
-   
-}
+const initialState = {'user':{},'videos':[], 'serverIp':serverIp, 'favList':[]}
 
-const data = [
-  {
-      "id": 0,
-      "name": "All Along The Watchtower(360P)_1.mp4",
-      "duration": 246.287708,
-      "path": "C:\\Users\\US3R\\Desktop\\vid\\All Along The Watchtower(360P)_1.mp4"
-  },
-  {
-      "id": 1,
-      "name": "Bee Gees - Stayin_ Alive (Official Music Video)(360P)_1.mp4",
-      "duration": 249.5,
-      "path": "C:\\Users\\US3R\\Desktop\\vid\\Bee Gees - Stayin_ Alive (Official Music Video)(360P)_1.mp4"
-  },
-  {
-      "id": 2,
-      "name": "Eric Clapton - I Shot The Sheriff [Crossroads 2010] (Official Live Video)(360P)_1.mp4",
-      "duration": 508.508,
-      "path": "C:\\Users\\US3R\\Desktop\\vid\\Eric Clapton - I Shot The Sheriff [Crossroads 2010] (Official Live Video)(360P)_1.mp4"
-  },
-  {
-      "id": 3,
-      "name": "Little Wing(360P)_1.mp4",
-      "duration": 151.458333,
-      "path": "C:\\Users\\US3R\\Desktop\\vid\\Little Wing(360P)_1.mp4"
-  }
-]
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, initialState,composeEnhancers())
 
-const initialState = {'user':{},'videos':data, 'serverIp':serverIp, 'favList':[]}
+var data = []
 
-const store = createStore(reducer, initialState)
+axios.get(`http://${serverIp}:4000/videos`)
+  .then(function (response) {
+    // handle success
+    data = response.data
+    console.log('dd')
+     store.dispatch({
+      type:'SET_VIDEOS',
+      payload:data
+    })
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+  });
 
 ReactDOM.render(
   <React.StrictMode>

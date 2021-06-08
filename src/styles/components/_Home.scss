@@ -1,0 +1,27 @@
+.Layout{
+    background-color: #212529;
+}
+.Home-container{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 1300px;
+    margin: 10px;
+    margin: 0 auto;
+    h2{
+        color: #fff;
+    }
+    .Favorite-videos{
+        height: 200px;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .container{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

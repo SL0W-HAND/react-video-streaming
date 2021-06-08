@@ -11,6 +11,17 @@ import NotFound from './pages/NotFound.js';
 import Results from './pages/Results.js';
 import Layout from './components/Layout'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import './styles/modules.scss';
+import { faMinusCircle, faPlusCircle, faRandom, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+library.add( 
+    faRandom,
+    faPlusCircle,
+    faMinusCircle,
+    faSearch
+)
 
 function App() {
     return (
