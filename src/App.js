@@ -14,18 +14,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './styles/modules.scss';
-import { faMinusCircle, faPlusCircle, faRandom, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faMinusCircle, faPlusCircle, faRandom, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 library.add( 
     faRandom,
     faPlusCircle,
     faMinusCircle,
-    faSearch
+    faSearch,
+    faHome
 )
 
 function App() {
     return (
-        <Router>
+        <Router >
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Home}/>

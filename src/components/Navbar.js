@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from '../logo.svg';
 import Searcher from './Searcher';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Random from './Random'
 
 class Navbar extends Component {
     constructor(props) {
@@ -24,12 +24,10 @@ class Navbar extends Component {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
                         <div className='links'>
-                            <Link to='/home'>
-                                <h1 className="navbar-brand">Home</h1>
+                            <Link to='/'>
+                                <FontAwesomeIcon icon={['fas', 'home']} size='2x' />
                             </Link> 
-                            <Link to='/home'>
-                                <FontAwesomeIcon icon={['fas', 'random']} size='1x' />
-                            </Link> 
+                            <Random/>
                         </div>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

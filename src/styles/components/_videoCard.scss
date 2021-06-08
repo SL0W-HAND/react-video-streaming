@@ -1,8 +1,16 @@
-.card{
+.video-card{
     width: 300px;
     margin: 7px;
-    border: 1px solid #fff;
+    @include border;
+    position: relative;
+    border-radius: 20px;
+    @include Shadow;
+    img{
+        width: 295px;
+        border-radius: 10px;
+    }
     h5{
+        @include Text;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -16,6 +24,9 @@
 
     .card-img-overlay{
         background: linear-gradient(transparent, #000);
+        position: absolute;
+        border-radius: 10px;
+        @include Text;
     }
 
     h5{
@@ -31,10 +42,10 @@
             background-color: transparent;
             border: none;
             .fa-minus-circle{
-                color:#DC3545 ;
+                color:#EF0011;
             }
             .fa-plus-circle{
-                color: #157347;
+                color:#00BD4E;
             }
         }
     }  

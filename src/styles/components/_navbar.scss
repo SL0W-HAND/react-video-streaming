@@ -1,39 +1,35 @@
-.Navbar{
-    
+.navbar{
+    background-color: $back-color;
     .links{
         display: flex;
         flex-direction: row;
+        svg,button{
+            color: #EF0011;
+            margin-left: 20px;
+            border: none;
+            background-color: transparent;
+        }
     }
 }
 
+.navbar-collapse{
+    height: 50px;
+    margin-bottom: 10px;
+}
 .searcher{
     position: relative;
-    max-width: 80vw;
-    
+    width: 60vw;
+    max-width: 900px;
+    z-index: 20;
     margin: 0 auto;
-    background-color: #fff;
-    div{
-        display: flex;
-        justify-content: center;
-        height: 35px;
-        border-radius: 20px;
-        width: 100%;
-        
-        input{
-            width: 90%;
-            outline: none;
-            border: none;
-        }
-        button,svg{
-            background-color: #fff;
-            border: none;
-        }
-    }
     ul{
         position: absolute;
         background-color: #fff;
+        top: -2px;
         width: 100%;
-        border-radius: 20px;
+        border-radius: 15px;
+        @include border;
+        @include AllShadow;
         li{
             white-space: nowrap;
             overflow: hidden;
@@ -43,6 +39,21 @@
             resize: none;
             a{
                 color: #000;
+                @include Text;
+            }
+        }
+        .input-search{
+            display: flex;
+            justify-content: space-between;
+            input{
+                outline: none;
+                width: 95%;
+                border: none;
+            }
+            svg,button{
+                background-color: #fff;
+                border: none;
+                border-radius: 20px;
             }
         }
     }

@@ -1,27 +1,45 @@
-.Layout{
-    background-color: #212529;
-}
+
 .Home-container{
     display: flex;
     flex-direction: column;
     width: auto;
     max-width: 1300px;
     margin: 10px;
-    margin: 0 auto;
+    margin: auto;
+    padding: 5px;
     h2{
         color: #fff;
+        margin-left: 40px;
+        @include Title3;
     }
-    .Favorite-videos{
-        height: 200px;
-        width: auto;
-        display: flex;
-        flex-direction: row;
-        
-    }
-    .container{
-        display: flex;
+    .fav-videos{
+        height: 250px;
         width: 100%;
-        flex-wrap: wrap;
+        background-color: $back-color2;
+        padding: 20px;
+        @include AllShadow;
+        @include border;
+        border-radius: 20px;
+        .Favorite-videos{
+            display: flex;
+            flex-direction: row;
+            overflow: auto;
+        }
+    }
+    .videos{
+        @include border;
+        padding: 20px;
+        margin-top: 50px;
         justify-content: center;
+        background-color: $back-color2;
+        @include AllShadow;
+        border-radius: 20px;
+        
+        .containerr{
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 }
