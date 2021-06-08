@@ -23,17 +23,18 @@ class Home extends Component {
     render() {
         return (
             <main className='Home-container'>
-                <h1>fav</h1>
                 <FavoriteVideos serverIp={this.state.serverIp} videos={this.props.favList}/>
-                <h2>Videos</h2>
-                <div className='container'>
-                    {this.props.videos.length !== 0 ?
-                        this.props.videos.map(video =>
-                            <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
-                        )
-                        :null       
-                    }
+                <section className='videos'>
+                    <span><h2>Videos</h2></span>
+                    <div className='containerr'>
+                        {this.props.videos.length !== 0 ?
+                            this.props.videos.map(video =>
+                                <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
+                            )
+                            :null       
+                        }
                 </div>
+                </section>
             </main>
         );
     };

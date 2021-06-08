@@ -25,7 +25,7 @@ class Player extends Component {
     render() {
         return (
             <>
-                <video controls muted autoPlay>
+                <video style={{width:'100vw'}} controls muted autoPlay>
                     <source src={`http://${serverIp}:4000/video/${this.state.videoId}`} type="video/mp4"></source>
                 </video>
                 <div>

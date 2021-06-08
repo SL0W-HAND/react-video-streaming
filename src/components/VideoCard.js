@@ -17,17 +17,17 @@ const VideoCard = ({name, serverIp, id, duration, setFavorite, deleateFavorite, 
     };
     
     return (
-        <div class="card bg-dark text-white">
-                <img src={`http://${serverIp}:4000/video/${id}/poster`} class="card-img" alt={name}/>  
-                <div class="card-img-overlay">
+        <div className="video-card">
+                <img src={`http://${serverIp}:4000/video/${id}/poster`} className="card-img" alt={name}/>  
+                <div className="card-img-overlay">
                     <Link  style={{ textDecoration: 'none' }} to={`/player/${id}`}>
-                        <h5 class="card-title ">{name}</h5>
+                        <h5 className="card-title ">{name}</h5>
                     </Link>
                     <div className='info-container'>
-                        <p class="card-text">{`${Math.floor(duration/60)}:${((duration/60)-Math.floor(duration/60)).toFixed(2)}`}</p>
+                        <p className="card-text">{`${Math.floor(duration/60)}:${((duration/60)-Math.floor(duration/60)).toFixed(2)}`}</p>
                         {isList ?
-                            <button style={{ position:'relative' }} onClick={handelDeleateFavorite}><FontAwesomeIcon icon={['fas', 'minus-circle']} size='2x'/></button>  
-                            :<button style={{ tposition:'relative' }} onClick={handleSetFavorite}><FontAwesomeIcon icon={['fas', 'plus-circle']} size='2x'/></button>
+                            <button style={{ position:'relative' }} onClick={handelDeleateFavorite}><FontAwesomeIcon icon={['fas', 'minus-circle']} size='1x'/></button>  
+                            :<button style={{ tposition:'relative' }} onClick={handleSetFavorite}><FontAwesomeIcon icon={['fas', 'plus-circle']} size='1x'/></button>
                         }
                     </div>
                 </div>           

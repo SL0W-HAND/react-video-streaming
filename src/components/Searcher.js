@@ -19,7 +19,7 @@ const Searcher = ({videos}) => {
                 return data.name.toLowerCase().includes(value);
             });
             //slice for the max number of results on the screen
-            setFilteredData(result.slice(0, 2));
+            setFilteredData(result.slice(0, 10));
         } else {
             setFilteredData([]);
         };
@@ -31,11 +31,11 @@ const Searcher = ({videos}) => {
 
     return (
         <div className='searcher'>
-            <div>
-                <input type="text" onChange={(event) =>handleSearch(event)}/>
-                <button onClick={handleClick}><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
-            </div>
             <ul>
+                <li className='input-search'>
+                    <input type="text" onChange={(event) =>handleSearch(event)} placeholder='search'/>
+                    <button onClick={handleClick}><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
+                </li>
                 {filteredData.map(video =>
                     <li><Link  to={`/player/${video.id}`}>{video.name}</Link></li>    
                 )}

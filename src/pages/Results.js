@@ -12,9 +12,9 @@ const Results = props => {
     //slice for the max number of results on the screen
 
     return (
-        <div>
+        <div className='video-results'>
            {params.lenght === 0
-            ? <h1>nel</h1>
+            ? <h1>No results</h1>
             : Allvideos.lenght === 0 
                 ?<h1>nel</h1>
                 :Allvideos.map(video =>
