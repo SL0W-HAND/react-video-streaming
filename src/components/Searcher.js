@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import { Link,useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Searcher = ({videos}) => {
@@ -13,8 +14,7 @@ const Searcher = ({videos}) => {
         let result = [];
         let value = event.target.value.toLowerCase();
         setInputValue(value.split(' ').join('_'));
-        //console.log(InputValue)
-        if (event.target.value !== 0) {
+        if (event.target.value.length !== 0) {
             result = videos.filter((data) => {
                 return data.name.toLowerCase().includes(value);
             });
@@ -30,15 +30,14 @@ const Searcher = ({videos}) => {
     const handleClick = () => history.push(`/search/${InputValue}`);
 
     return (
-        <div>
-            <label>Search:</label>
+        <div className='searcher'>
             <div>
-                <input type="text" onChange={(event) =>handleSearch(event)} />
-                <button onClick={handleClick}>find</button>
+                <input type="text" onChange={(event) =>handleSearch(event)}/>
+                <button onClick={handleClick}><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
             </div>
             <ul>
                 {filteredData.map(video =>
-                    <li><Link to={`/player/:${video.id}`}>{video.name}</Link></li>    
+                    <li><Link  to={`/player/${video.id}`}>{video.name}</Link></li>    
                 )}
             </ul>
         </div>

@@ -1,0 +1,41 @@
+.card{
+    width: 300px;
+    margin: 7px;
+    border: 1px solid #fff;
+    h5{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        resize: horizontal;
+        width: 100%;
+        resize: none;
+        bottom: 0;
+        color: #fff;
+        
+    }
+
+    .card-img-overlay{
+        background: linear-gradient(transparent, #000);
+    }
+
+    h5{
+        margin-top: 60px;
+    }
+
+    .info-container{
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+        button{
+            margin-left: 20px;
+            background-color: transparent;
+            border: none;
+            .fa-minus-circle{
+                color:#DC3545 ;
+            }
+            .fa-plus-circle{
+                color: #157347;
+            }
+        }
+    }  
+}

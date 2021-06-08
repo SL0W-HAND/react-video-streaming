@@ -8,24 +8,13 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            videos: [],
             favList: [],
             serverIp:''
         };
     };
 
-    async componentDidMount() {
-        try {
-            /*
-            const response = await fetch(`http://${serverIp}:4000/videos`);
-            const data = await response.json();
-            this.setState({ videos: [...data] });
-            */
-        } catch (error) {
-            console.log(error);
-        }
+    componentDidMount() {
         this.setState({
-            videos:this.props.videos, 
             serverIp: this.props.serverIp,
             favList:this.props.favList
         });
@@ -33,14 +22,19 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <main className='Home-container'>
+                <h1>fav</h1>
                 <FavoriteVideos serverIp={this.state.serverIp} videos={this.props.favList}/>
-                <div>
-                    {this.state.videos.map(video =>
-                        <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
-                    )}
+                <h2>Videos</h2>
+                <div className='container'>
+                    {this.props.videos.length !== 0 ?
+                        this.props.videos.map(video =>
+                            <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
+                        )
+                        :null       
+                    }
                 </div>
-            </div>
+            </main>
         );
     };
 };

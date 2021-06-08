@@ -14,7 +14,12 @@ const reducer = (state,action) => {
             return {
                 ...state,
                 user: action.payload,
-            } 
+            }
+        case 'SET_VIDEOS' :
+            return {
+                ...state,
+                videos:action.payload
+            }
         default:
             return state
     };  

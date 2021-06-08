@@ -28,7 +28,7 @@ class Player extends Component {
                 <video controls muted autoPlay>
                     <source src={`http://${serverIp}:4000/video/${this.state.videoId}`} type="video/mp4"></source>
                 </video>
-                <div className='player-black'>
+                <div>
                 <button type='button' onClick={()=> this.props.history.goBack()}>
                     Back
                 </button>
