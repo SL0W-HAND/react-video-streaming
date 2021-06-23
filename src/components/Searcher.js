@@ -10,6 +10,8 @@ const Searcher = ({videos}) => {
 
     const [InputValue, setInputValue] = useState('');
 
+    const [ResultsStyle, setResultsStyle] = useState("none");
+
     const handleSearch = (event) => {
         let result = [];
         let value = event.target.value.toLowerCase();
@@ -20,8 +22,14 @@ const Searcher = ({videos}) => {
             });
             //slice for the max number of results on the screen
             setFilteredData(result.slice(0, 10));
+            if (result.length != 0) {
+                setResultsStyle("2px solid #F184B5");   
+            }else{
+                setResultsStyle("none")
+            }
         } else {
             setFilteredData([]);
+            setResultsStyle("none")
         };
     };
 
@@ -31,13 +39,13 @@ const Searcher = ({videos}) => {
 
     return (
         <div className='searcher'>
-            <ul>
-                <li className='input-search'>
-                    <input type="text" onChange={(event) =>handleSearch(event)} placeholder='search'/>
-                    <button onClick={handleClick}><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
-                </li>
+            <form className="d-flex">
+                <input type="text" className="form-control me-sm-2" onChange={(event) => handleSearch(event)} placeholder='search'/>
+                <button className="btn btn-secondary my-2 my-sm-0" onClick={handleClick}><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
+            </form>
+            <ul style={{border:ResultsStyle}}>
                 {filteredData.map(video =>
-                    <li><Link  to={`/player/${video.id}`}>{video.name}</Link></li>    
+                    <li key={`link${video.id}`}><Link to={`/player/${video.id}`}>{video.name}</Link></li>    
                 )}
             </ul>
         </div>

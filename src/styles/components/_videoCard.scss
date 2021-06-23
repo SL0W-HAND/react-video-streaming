@@ -1,52 +1,36 @@
-.video-card{
+.card {
     width: 300px;
-    margin: 7px;
-    @include border;
-    position: relative;
-    border-radius: 20px;
-    @include Shadow;
+    height: 327px;
+    resize: none;
+    margin: 0 auto;
+    margin: 5px;
     img{
-        width: 295px;
-        border-radius: 10px;
+        width: 95%;
+        margin: 0 auto;
     }
-    h5{
-        @include Text;
+    h3{
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        resize: horizontal;
-        width: 100%;
         resize: none;
-        bottom: 0;
-        color: #fff;
-        
     }
-
-    .card-img-overlay{
-        background: linear-gradient(transparent, #000);
-        position: absolute;
-        border-radius: 10px;
-        @include Text;
-    }
-
-    h5{
-        margin-top: 60px;
-    }
-
-    .info-container{
-        display: flex;
-        align-items: baseline;
-        justify-content: flex-end;
-        button{
-            margin-left: 20px;
-            background-color: transparent;
-            border: none;
-            .fa-minus-circle{
-                color:#EF0011;
-            }
-            .fa-plus-circle{
-                color:#00BD4E;
-            }
+    button{
+        background-color: transparent;
+        border: none;
+        .fa-plus-circle{
+            color: #41D7A7;
+            background-color: white;
+            border-radius: 50%;
         }
-    }  
+        .fa-minus-circle{
+            color: #E83283;
+            background-color: white;
+            border-radius: 50%;
+        }
+    }
+    .card-body{
+        padding: .5rem;
+        display: flex;
+        justify-content: flex-end;
+    }
 }

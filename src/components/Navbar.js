@@ -21,19 +21,19 @@ class Navbar extends Component {
     render() {
         return (
             <header className='Navbar'>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     <div className="container-fluid">
-                        <div className='links'>
-                            <Link to='/'>
+                        <div>
+                            <Link className="navbar-brand" to='/'>
                                 <FontAwesomeIcon icon={['fas', 'home']} size='2x' />
                             </Link> 
                             <Random/>
                         </div>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <Searcher className="navbar-nav"/>
+                        <div className="collapse navbar-collapse" id="navbarColor01">
+                            <Searcher className="navbar-nav"/>      
                         </div>
                     </div>
                 </nav>

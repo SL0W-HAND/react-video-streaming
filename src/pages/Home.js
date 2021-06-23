@@ -26,7 +26,7 @@ class Home extends Component {
                 <FavoriteVideos serverIp={this.state.serverIp} videos={this.props.favList}/>
                 <section className='videos'>
                     <span><h2>Videos</h2></span>
-                    <div className='containerr'>
+                    <div className='vid-container'>
                         {this.props.videos.length !== 0 ?
                             this.props.videos.map(video =>
                                 <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>

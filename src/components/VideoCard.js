@@ -17,20 +17,22 @@ const VideoCard = ({name, serverIp, id, duration, setFavorite, deleateFavorite, 
     };
     
     return (
-        <div className="video-card">
-                <img src={`http://${serverIp}:4000/video/${id}/poster`} className="card-img" alt={name}/>  
-                <div className="card-img-overlay">
-                    <Link  style={{ textDecoration: 'none' }} to={`/player/${id}`}>
-                        <h5 className="card-title ">{name}</h5>
-                    </Link>
-                    <div className='info-container'>
-                        <p className="card-text">{`${Math.floor(duration/60)}:${((duration/60)-Math.floor(duration/60)).toFixed(2)}`}</p>
-                        {isList ?
-                            <button style={{ position:'relative' }} onClick={handelDeleateFavorite}><FontAwesomeIcon icon={['fas', 'minus-circle']} size='1x'/></button>  
-                            :<button style={{ tposition:'relative' }} onClick={handleSetFavorite}><FontAwesomeIcon icon={['fas', 'plus-circle']} size='1x'/></button>
-                        }
-                    </div>
-                </div>           
+        <div className="card mb-3">
+            <Link  style={{ textDecoration: 'none' }} to={`/player/${id}`}>
+                <h3 className="card-header">{name}</h3>
+            </Link>
+            <Link  style={{ textDecoration: 'none' }} to={`/player/${id}`}>
+                <img src={`http://${serverIp}:4000/video/${id}/poster`} className="d-block user-select-none" alt={name}/>  
+            </Link>
+            <div className="card-body">
+                {isList ?
+                    <button className="card-link" onClick={handelDeleateFavorite}><FontAwesomeIcon icon={['fas', 'minus-circle']} size='2x'/></button>  
+                    :<button className="card-link" onClick={handleSetFavorite}><FontAwesomeIcon icon={['fas', 'plus-circle']} size='2x'/></button>
+                }
+            </div>
+            <div className="card-footer text-muted">
+                <p className="card-text">{`${Math.floor(duration/60)}:${((duration/60)-Math.floor(duration/60)).toFixed(2)}`}</p>
+            </div>
         </div>
     );
 };
