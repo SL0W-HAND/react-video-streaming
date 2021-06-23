@@ -7,7 +7,7 @@ const FavoriteVideos = ({videos,serverIp}) => {
         <React.Fragment>
         {videos.length ?
             <div className='fav-videos'>
-                <h2>Favorite videos</h2>
+                <span><h2>Favorite videos</h2></span>
                 <div className='Favorite-videos'>
                     {videos.map(video =>
                         <VideoCard key={video.id} {...video} serverIp={serverIp} isList/>
