@@ -32,8 +32,9 @@ class Player extends Component {
                 <button type='button' onClick={()=> this.props.history.goBack()}>
                     Back
                 </button>
+                
+                <h1></h1>
                 </div>
-                <h1>{ this.state.videoData.name }</h1>
             </>
         );
     };

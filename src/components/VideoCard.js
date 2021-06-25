@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const VideoCard = ({name, serverIp, id, duration, setFavorite, deleateFavorite, isList}) => {
     const handleSetFavorite = () => {
         setFavorite({
-            name, serverIp, id
+            name, serverIp, id,duration
         });
     };
 
@@ -24,14 +24,12 @@ const VideoCard = ({name, serverIp, id, duration, setFavorite, deleateFavorite, 
             <Link  style={{ textDecoration: 'none' }} to={`/player/${id}`}>
                 <img src={`http://${serverIp}:4000/video/${id}/poster`} className="d-block user-select-none" alt={name}/>  
             </Link>
-            <div className="card-body">
+            <div className="card-footer text-muted flex">
+                <p className="card-text">{`${Math.floor(duration/60)}:${(((duration/60)-Math.floor(duration/60)).toFixed(2))*100}`}</p>
                 {isList ?
                     <button className="card-link" onClick={handelDeleateFavorite}><FontAwesomeIcon icon={['fas', 'minus-circle']} size='2x'/></button>  
                     :<button className="card-link" onClick={handleSetFavorite}><FontAwesomeIcon icon={['fas', 'plus-circle']} size='2x'/></button>
                 }
-            </div>
-            <div className="card-footer text-muted">
-                <p className="card-text">{`${Math.floor(duration/60)}:${((duration/60)-Math.floor(duration/60)).toFixed(2)}`}</p>
             </div>
         </div>
     );
@@ -47,6 +45,5 @@ const mapDispatchToProps = {
     setFavorite,
     deleateFavorite,
 };
-
 
 export default connect(null, mapDispatchToProps)(VideoCard);

@@ -19,7 +19,6 @@ axios.get(`http://${serverIp}:4000/videos`)
   .then(function (response) {
     // handle success
     data = response.data
-    console.log('dd')
      store.dispatch({
       type:'SET_VIDEOS',
       payload:data

@@ -1,17 +1,28 @@
 .Home-container{
-    width: 100%;
-    max-width: 1250px;
-    margin: 0 auto;
+    width: 100vw ;
     .videos, .fav-videos{
+        margin: 0 auto;
+        width: 310px;
         padding-top: 10px;
+        @media (min-width:630px) {
+            width: 620px;
+            .vid-container{
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        @media (min-width:930px) {
+            width: 930px;
+        }
+        @media (min-width:1240px) {
+            width: 1240px;
+        }
+        @media (min-width:1550px) {
+            width: 1550px;
+        }
         span h2{
             margin-left: 1rem;
         }
     }
-    @include media(tablet){
-        .vid-container,.Favorite-videos{
-            display: flex;
-            flex-wrap: wrap;
-        }
-    }
+    
 }

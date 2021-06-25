@@ -22,7 +22,7 @@ const Searcher = ({videos}) => {
             });
             //slice for the max number of results on the screen
             setFilteredData(result.slice(0, 10));
-            if (result.length != 0) {
+            if (result.length !== 0) {
                 setResultsStyle("2px solid #F184B5");   
             }else{
                 setResultsStyle("none")
@@ -35,7 +35,13 @@ const Searcher = ({videos}) => {
 
 
     const history = useHistory();
-    const handleClick = () => history.push(`/search/${InputValue}`);
+    const handleClick = () => { 
+        if (InputValue.length !== 0) {
+            history.push(`/search/${InputValue}`)            
+        } else {
+            //prevent default and bootstrap alert   
+        }
+    }
 
     return (
         <div className='searcher'>
