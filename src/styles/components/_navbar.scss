@@ -3,8 +3,11 @@
         button{
             background-color: transparent;
             border: none;
-            svg{
-                color: white;
+        }
+        svg{
+            color: white;
+            &:hover{
+                color:rgba(255,255,255,0.7);
             }
         }
         @include media(desktop-s){
@@ -17,6 +20,18 @@
                     top: 60px;
                 }
             }
+        }
+        @media (min-width:930px) {
+            width: 930px;
+            .navbar-collapse{
+                flex-grow: unset;
+            }
+        }
+        @media (min-width:1240px) {
+            width: 1240px;
+        }
+        @media (min-width:1550px) {
+            width: 1550px;
         }
     }
 }
@@ -43,6 +58,8 @@
         border-radius: 9px;
         width: 100%;
         top: 55px;
+        padding-left: 0;
+        padding-bottom: 5px;
         li{
             text-decoration: none;
             white-space: nowrap;
@@ -50,9 +67,19 @@
             text-overflow: ellipsis;
             resize: none;
             margin-top: 7px;
+            width: 100%;
+            padding-left: 5px;
             a{
                 @include Text;
                 color: white;
+            }
+            &:hover{
+                background-color: white;
+                a{
+                    color: #E83283;
+                    text-decoration: none;
+
+                }
             }
         }
     }

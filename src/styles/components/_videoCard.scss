@@ -1,6 +1,6 @@
 .card {
     width: 300px;
-    height: 327px;
+    height: 280px;
     resize: none;
     margin: 0 auto;
     margin: 5px;
@@ -28,9 +28,9 @@
             border-radius: 50%;
         }
     }
-    .card-body{
+    .card-footer{
         padding: .5rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
     }
 }

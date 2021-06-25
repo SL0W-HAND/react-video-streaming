@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import VideoCard from '../components/VideoCard';
+import Error404 from '../components/Error404';
 
 const Results = props => {
 
@@ -13,15 +14,22 @@ const Results = props => {
 
     return (
         <main className='Home-container'>
-            <section className='vid-container'>
-            {params.lenght === 0
-                ? <h1>No results</h1>
-                : Allvideos.lenght === 0 
-                    ? <h1>Not results</h1>
+            <section className='videos'>
+                {Allvideos.length == 0
+                    ? null
+                    :<span><h2>Results for "{props.match.params.id}"</h2></span>
+                }
+                <div className='vid-container'>
+                {Allvideos.length === 0 
+                    ?<div className='notfound'>
+                        <h1>Not results</h1>
+                        <Error404/>
+                    </div>
                     : Allvideos.map(video =>
                         <VideoCard key={video.id}  {...video} serverIp={props.serverIp}/>
                     )
-            }
+                }
+                </div>
             </section>
         </main>
     );

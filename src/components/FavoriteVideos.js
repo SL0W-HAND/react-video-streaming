@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import VideoCard from './VideoCard';
 
 const FavoriteVideos = ({videos,serverIp}) => {
+    console.log(videos)
     return (
         <React.Fragment>
         {videos.length ?
             <div className='fav-videos'>
                 <span><h2>Favorite videos</h2></span>
-                <div className='Favorite-videos'>
+                <div className='vid-container'>
                     {videos.map(video =>
                         <VideoCard key={video.id} {...video} serverIp={serverIp} isList/>
                     )}
