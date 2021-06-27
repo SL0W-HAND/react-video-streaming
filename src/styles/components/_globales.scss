@@ -8,3 +8,16 @@ $font: system-ui, helvetica ,arial;
     line-height: 30px;
     font-weight: 400;
 }
+
+
+//global styles
+button{
+    background-color: transparent;
+    border: none;
+    svg{
+        color: white;
+        &:hover{
+            color:rgba(255,255,255,0.7);
+        }
+    }
+}

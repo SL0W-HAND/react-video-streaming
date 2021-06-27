@@ -15,7 +15,7 @@ const Results = props => {
     return (
         <main className='Home-container'>
             <section className='videos'>
-                {Allvideos.length == 0
+                {Allvideos.length === 0
                     ? null
                     :<span><h2>Results for "{props.match.params.id}"</h2></span>
                 }

@@ -51,10 +51,10 @@ const Login = props => {
 				</form>
 				<section className='login__container--social-media'>
 					<div>
-						<img src='../assets/google-icon.png' /> Inicia sesión con Google
+						<img src='../assets/google-icon.png' alt='google'/> Inicia sesión con Google
 					</div>
 					<div>
-						<img src='../assets/twitter-icon.png' /> Inicia sesión con Twitter
+						<img src='../assets/twitter-icon.png' alt='twitter'/> Inicia sesión con Twitter
 					</div>
 				</section>
 				<p className='login__container--register'>

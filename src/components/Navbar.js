@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import Searcher from './Searcher';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Random from './Random'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Random from './Random';
 
 class Navbar extends Component {
     constructor(props) {

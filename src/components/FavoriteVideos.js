@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import VideoCard from './VideoCard';
 
 const FavoriteVideos = ({videos,serverIp}) => {
-    console.log(videos)
     return (
         <React.Fragment>
         {videos.length ?

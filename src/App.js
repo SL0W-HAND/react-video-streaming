@@ -15,14 +15,15 @@ import 'bootswatch/dist/quartz/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './styles/modules.scss';
-import { faHome, faMinusCircle, faPlusCircle, faRandom, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faMinusCircle, faPlusCircle, faRandom, faSearch, faStepBackward } from '@fortawesome/free-solid-svg-icons';
 
 library.add( 
     faRandom,
     faPlusCircle,
     faMinusCircle,
     faSearch,
-    faHome
+    faHome,
+    faStepBackward
 )
 
 function App() {

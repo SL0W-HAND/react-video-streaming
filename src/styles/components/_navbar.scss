@@ -4,12 +4,7 @@
             background-color: transparent;
             border: none;
         }
-        svg{
-            color: white;
-            &:hover{
-                color:rgba(255,255,255,0.7);
-            }
-        }
+        
         @include media(desktop-s){
             display: flex;
             justify-content: space-between;
