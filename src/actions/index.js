@@ -8,7 +8,12 @@ export const deleateFavorite = payload => ({
     payload,
 });
 
-export const loginRequest = payload => ({
-    type: 'LOGIN_REQUEST',
+export const setUser = payload => ({
+    type: 'SET_USER',
     payload,
 });
+
+export const setVideos = payload => ({
+    type: 'SET_VIDEOS',
+    payload
+})

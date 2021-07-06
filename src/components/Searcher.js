@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
-import { Link,useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -11,6 +11,8 @@ const Searcher = ({videos}) => {
     const [InputValue, setInputValue] = useState('');
 
     const [ResultsStyle, setResultsStyle] = useState("none");
+
+    const history = useHistory();
 
     const handleSearch = (event) => {
         let result = [];
@@ -34,10 +36,13 @@ const Searcher = ({videos}) => {
     };
 
 
-    const history = useHistory();
-    const handleClick = () => { 
+    const handleClick = (event) => {
+        event.preventDefault() 
+            
         if (InputValue.length !== 0) {
-            history.push(`/search/${InputValue}`)            
+            history.push(`/search/${InputValue}`) 
+            setFilteredData([])
+            setResultsStyle("none")      
         } else {
             //prevent default and bootstrap alert   
         }
@@ -45,9 +50,9 @@ const Searcher = ({videos}) => {
 
     return (
         <div className='searcher'>
-            <form className="d-flex">
+            <form className="d-flex" onSubmit={handleClick}>
                 <input type="text" className="form-control me-sm-2" onChange={(event) => handleSearch(event)} placeholder='search'/>
-                <button className="btn btn-secondary my-2 my-sm-0" onClick={handleClick}><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
+                <button className="btn btn-secondary my-2 my-sm-0" type='submit'><FontAwesomeIcon icon={['fas', 'search']} size='1x' /></button>
             </form>
             <ul style={{border:ResultsStyle}}>
                 {filteredData.map(video =>

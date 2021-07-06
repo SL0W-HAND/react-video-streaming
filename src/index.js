@@ -6,30 +6,12 @@ import { Provider } from 'react-redux';
 import { createStore,compose } from 'redux';
 import reducer from './reducers/index';
 import serverIp from './ipConfig.js';
-import axios from 'axios';
 
-const initialState = {'user':{},'videos':[], 'serverIp':serverIp, 'favList':[]}
+const initialState = {'user':null,'videos':[], 'serverIp':serverIp, 'favList':[]}
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, initialState,composeEnhancers())
 
-var data = []
-
-axios.get(`http://${serverIp}:4000/videos`)
-  .then(function (response) {
-    // handle success
-    data = response.data
-     store.dispatch({
-      type:'SET_VIDEOS',
-      payload:data
-    })
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-  });
 
 ReactDOM.render(
   <React.StrictMode>

@@ -2,16 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import VideoCard from '../components/VideoCard';
 import Error404 from '../components/Error404';
+import { useHistory } from 'react-router-dom';
 
 const Results = props => {
 
     const params = props.match.params.id.split('_').join(' ');
 
+    const history = useHistory();
+
     const Allvideos = props.videos.filter((data) => {
         return data.name.toLowerCase().includes(params);
     });
-    //slice for the max number of results on the screen
 
+    if (props.user === null) {
+        history.push('/login')
+    }
+   
     return (
         <main className='Home-container'>
             <section className='videos'>
@@ -38,7 +44,8 @@ const Results = props => {
 const mapStateToProps = state => {
     return{
         videos:state.videos,
-        serverIp:state.serverIp
+        serverIp:state.serverIp,
+        user:state.user,
     };
 };
 
