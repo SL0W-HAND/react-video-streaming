@@ -19,7 +19,7 @@
         @media (min-width:930px) {
             width: 930px;
             .navbar-collapse{
-                flex-grow: unset;
+                flex-grow: 1;
             }
         }
         @media (min-width:1240px) {

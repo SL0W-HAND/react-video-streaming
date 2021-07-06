@@ -1,28 +1,37 @@
 import React,{useState, useEffect} from 'react';
 import serverIp from '../ipConfig.js';
 import {connect} from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Player = props => {
    
-    const Id = props.match.params.id
+    const {id} = useParams()
 
     const [VideoData, setVideoData] = useState({})
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                `http://${serverIp}:4000/video/${Id}/data`,
-            );
-       
-            setVideoData(result.data);
-          };
-       
-          fetchData();
-      },[Id]);
+    const [VideoUrl, setVideoUrl] = useState('')
 
+    const history = useHistory();
+
+    useEffect(async () => {
+        await axios.get(`http://${serverIp}/video/${props.match.params.id}/data`,{
+            headers:{
+                Authorization:`Bearer ${sessionStorage.getItem('token')}`
+                }
+            }
+        ).then(response => {
+                setVideoData(response.data);
+            });
+        console.log(VideoData) 
+        setVideoUrl(`http://${serverIp}/video/${id}`)   
+    },[id]);
+
+    if (props.user === null) {
+      history.push('/login')
+    }
     return (
         <main className='VideoPlayer'>
             <div>
@@ -31,12 +40,16 @@ const Player = props => {
                 </button>
                 <h1>{VideoData.name}</h1>
             </div>
-            <video controls autoPlay>
-                <source src={`http://${serverIp}:4000/video/${Id}`} type="video/mp4"></source>
+            <video controls autoPlay muted src={VideoUrl}>
             </video>
         </main>
-        );
-    
+    );
 };
 
-export default connect(null,null)(Player);
+const mapStateToProps = state => {
+    return{
+        user: state.user,
+    }
+}
+
+export default connect(mapStateToProps,null)(Player);

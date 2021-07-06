@@ -1,35 +1,38 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect } from 'react';
 import {  connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import VideoCard from '../components/VideoCard';
 import FavoriteVideos from '../components/FavoriteVideos';
 
 
-class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            favList: [],
-            serverIp:''
-        };
-    };
+const Home = props => {
 
-    componentDidMount() {
-        this.setState({
-            serverIp: this.props.serverIp,
-            favList:this.props.favList
-        });
-    };
+    const [Favlist, setFavlist] = useState([])
 
-    render() {
+    const [ServerIp, setServerIp] = useState('')
+
+    const history = useHistory();
+
+    useEffect(() => {
+        setFavlist(props.favList)
+        setServerIp(props.serverIp)
+    })
+
+    
+    //    {props.user === null ? history.push('/login') : null }
+    if (props.user === null) {
+        history.push('/login')
+    }
+    
         return (
             <main className='Home-container'>
-                <FavoriteVideos serverIp={this.state.serverIp} videos={this.props.favList}/>
+                <FavoriteVideos serverIp={ServerIp} videos={Favlist}/>
                 <section className='videos'>
                     <span><h2>Videos</h2></span>
                     <div className='vid-container'>
-                        {this.props.videos.length !== 0 ?
-                            this.props.videos.map(video =>
-                                <VideoCard key={video.id}  {...video} serverIp={this.state.serverIp}/>
+                        {props.videos.length !== 0 ?
+                            props.videos.map(video =>
+                                <VideoCard key={video.id}  {...video} serverIp={ServerIp}/>
                             )
                             :null       
                         }
@@ -37,14 +40,15 @@ class Home extends Component {
                 </section>
             </main>
         );
-    };
+    
 };
 
 const mapStateToProps = state => {
     return {
         videos: state.videos,
         serverIp: state.serverIp,
-        favList: state.favList
+        favList: state.favList,
+        user: state.user,
     };
 };
 

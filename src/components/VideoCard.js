@@ -22,7 +22,7 @@ const VideoCard = ({name, serverIp, id, duration, setFavorite, deleateFavorite, 
                 <h3 className="card-header">{name}</h3>
             </Link>
             <Link  style={{ textDecoration: 'none' }} to={`/player/${id}`}>
-                <img src={`http://${serverIp}:4000/video/${id}/poster`} className="d-block user-select-none" alt={name}/>  
+                <img src={`http://${serverIp}/video/${id}/poster`} className="d-block user-select-none" alt={name}/>  
             </Link>
             <div className="card-footer text-muted flex">
                 <p className="card-text">{`${Math.floor(duration/60)}:${(((duration/60)-Math.floor(duration/60)).toFixed(2))*100}`}</p>

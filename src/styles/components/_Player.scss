@@ -1,6 +1,9 @@
 .VideoPlayer{
     width: 95vw;
     margin: 10px auto 0 auto;
+    div{
+        display:flex;
+    }
     video{
         width: 100%;
     }
