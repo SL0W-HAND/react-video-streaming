@@ -1,23 +1,28 @@
-$success-color:#41D7A7;
-$primary-color:#E83283;
-$font: system-ui, helvetica ,arial;
+$success-color: #41d7a7;
+$prymary-color: #1546a0;
+$complementary-color: #0070ba;
+$background-color: #f5f7fa;
+$font: roboto, system-ui, helvetica, arial;
 
 @mixin Text {
-    font-family: $font;
-    font-size: 25px;
-    line-height: 30px;
-    font-weight: 400;
+	font-family: $font;
+	font-size: 25px;
+	line-height: 30px;
+	font-weight: 400;
 }
 
-
 //global styles
-button{
-    background-color: transparent;
-    border: none;
-    svg{
-        color: white;
-        &:hover{
-            color:rgba(255,255,255,0.7);
-        }
-    }
+button {
+	background-color: transparent;
+	border: none;
+	svg {
+		color: white;
+		&:hover {
+			color: rgba(255, 255, 255, 0.7);
+		}
+	}
+}
+
+.Layout {
+	background-color: $background-color;
 }

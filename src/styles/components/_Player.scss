@@ -1,21 +1,21 @@
-.VideoPlayer{
-    width: 95vw;
-    margin: 10px auto 0 auto;
-    div{
-        display:flex;
-    }
-    video{
-        width: 100%;
-    }
-    @include media(tablet){
-        video{
-            width: 730px;
-        }
-    }
-    @include media(desktop-s){
-        video{
-            width: auto;
-            height: 65vh;
-        }
-    }
+.VideoPlayer {
+	width: 95vw;
+	margin: 10px auto 0 auto;
+	div {
+		display: flex;
+	}
+	video {
+		width: 100%;
+	}
+	@include media(tablet) {
+		video {
+			width: 730px;
+		}
+	}
+	@include media(desktop-s) {
+		video {
+			width: auto;
+			height: 65vh;
+		}
+	}
 }
