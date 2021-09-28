@@ -18,9 +18,8 @@ const Searcher = ({ videos }) => {
 		let result = [];
 		let value = event.target.value.toLowerCase();
 		value = value.split(' ').join('_');
-
+		setInputValue(value);
 		if (value.length > 0) {
-			console.log(value);
 			axios
 				.get(`http://${serverIp}/videos/search/${value}`, {
 					withCredentials: true,
@@ -28,6 +27,7 @@ const Searcher = ({ videos }) => {
 				.then((res) => {
 					result = res.data;
 					setFilteredData(result);
+					console.log(result);
 					setResultsStyle('list-group');
 				})
 				.catch((err) => {
@@ -36,7 +36,7 @@ const Searcher = ({ videos }) => {
 					localStorage.setItem('authenticated', false);
 				});
 		}
-		if (event.target.value.length !== 0) {
+		if (value.length !== 0) {
 			if (result.length !== 0) {
 				setResultsStyle('list-group');
 			} else {
@@ -50,7 +50,7 @@ const Searcher = ({ videos }) => {
 
 	const handleClick = (event) => {
 		event.preventDefault();
-
+		console.log(InputValue);
 		if (InputValue.length !== 0) {
 			history.push(`/search/${InputValue}`);
 			setFilteredData([]);
@@ -58,6 +58,10 @@ const Searcher = ({ videos }) => {
 		} else {
 			//prevent default and bootstrap alert
 		}
+	};
+	const cleanResults = () => {
+		setFilteredData([]);
+		setResultsStyle('none');
 	};
 
 	return (
@@ -76,7 +80,9 @@ const Searcher = ({ videos }) => {
 			<ul className={ResultsStyle}>
 				{filteredData.map((video) => (
 					<li key={`link${video.id}`}>
-						<Link to={`/player/${video.id}`}>{video.name}</Link>
+						<Link onClick={cleanResults} to={`/player/${video.id}`}>
+							{video.name}
+						</Link>
 					</li>
 				))}
 			</ul>

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 //Components
 import VideoCard from '../components/VideoCard';
 import Carousel from '../components/Carousel';
+import Pagination from '../components/Pagination';
 import axios from 'axios';
 
 const Home = (props) => {
@@ -13,22 +14,34 @@ const Home = (props) => {
 
 	const [Videos, setVideos] = useState([]);
 
+	const [currentPage, setcurrentPage] = useState(1);
+
+	const [totalPages, settotalPages] = useState(1);
+
 	const history = useHistory();
 
-	useEffect(() => {
-		setFavlist(props.favList);
-		setServerIp(props.serverIp);
+	const fetchData = async () => {
 		axios
-			.get(`http://${props.serverIp}/videos/1`, { withCredentials: true })
+			.get(`http://${props.serverIp}/videos/${currentPage}`, {
+				withCredentials: true,
+			})
 			.then((res) => {
-				console.log(res);
+				console.log(res.data);
 				setVideos(res.data.videos);
+				setcurrentPage(res.data.page);
+				settotalPages(res.data.total_pages);
 			})
 			.catch((err) => {
 				console.log(err);
 				sessionStorage.clear();
 				history.push('/login');
 			});
+	};
+
+	useEffect(() => {
+		setFavlist(props.favList);
+		setServerIp(props.serverIp);
+		fetchData();
 	}, []);
 
 	useEffect(() => {
@@ -69,6 +82,12 @@ const Home = (props) => {
 						: null}
 				</div>
 			</section>
+			{totalPages > 1 ? (
+				<Pagination
+					currentPage={setcurrentPage}
+					totalPages={totalPages}
+				/>
+			) : null}
 		</main>
 	);
 };

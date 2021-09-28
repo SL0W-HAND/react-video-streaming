@@ -23,16 +23,6 @@
 		video {
 			width: 90vw;
 		}
-		@include media(tablet) {
-			video {
-				width: 730px;
-			}
-		}
-		@include media(desktop-m) {
-			video {
-				width: 90vw;
-			}
-		}
 	}
 	.recomendations {
 		width: 90vw;
