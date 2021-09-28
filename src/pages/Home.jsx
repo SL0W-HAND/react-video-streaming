@@ -72,16 +72,19 @@ const Home = (props) => {
 				<div className='vid-container'>
 					{Videos !== 0
 						? Videos.map((video) => (
-								<VideoCard
-									key={video.id}
-									{...video}
-									serverIp={ServerIp}
-									cardStyle='card1'
-								/>
-						  ))
+							<VideoCard
+								key={video.id}
+								{...video}
+								serverIp={ServerIp}
+								cardStyle='card1'
+							/>
+						))
 						: null}
 				</div>
 			</section>
+			<p>{currentPage}</p>
+			<p>{totalPages}</p>
+
 			{totalPages > 1 ? (
 				<Pagination
 					currentPage={setcurrentPage}

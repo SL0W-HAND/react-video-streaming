@@ -18,6 +18,8 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 
 	const [Recomendations, setRecomendations] = useState([]);
 
+	const [Colapsable, setColapsable] = useState('open')
+
 	const history = useHistory();
 
 	if (!localStorage.getItem('authenticated')) {
@@ -85,13 +87,33 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 			</div>
 			<div>
 				<section className='favorites'>
-					<h1>Favorites</h1>
-					<Carousel
-						serverIp={serverIp}
-						cardStyle='card2'
-						videos={Favlist}
-						islist={true}
-					/>
+					<div className='favorites_title'>
+						<h1>Favorites</h1>
+						{Colapsable === 'open' ?
+							<FontAwesomeIcon
+								icon={['fas', 'chevron-down']}
+								size='2x'
+								onClick={() => setColapsable('close')}
+								className='colapsable_icon'
+							/>
+							:
+							<FontAwesomeIcon
+								icon={['fas', 'chevron-right']}
+								size='2x'
+								onClick={() => setColapsable('open')}
+								className='colapsable_icon'
+
+							/>
+						}
+					</div>
+					<div className={Colapsable}>
+						<Carousel
+							serverIp={serverIp}
+							cardStyle='card2'
+							videos={Favlist}
+							islist={true}
+						/>
+					</div>
 				</section>
 				<section className='recomendations'>
 					<Carousel

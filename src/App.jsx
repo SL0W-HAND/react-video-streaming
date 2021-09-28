@@ -18,9 +18,23 @@ import {
 	faSearch,
 	faStepBackward,
 	faTrashAlt,
+	faChevronDown,
+	faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
-library.add(faRandom, faHeart, faTrashAlt, faSearch, faHome, faStepBackward);
+library.add(faRandom, faHeart, faTrashAlt, faSearch, faHome, faStepBackward, faChevronDown, faChevronRight);
+
+//every 5 seconds, make a request to the server to get the latest data
+setInterval(() => {
+	axios
+		.get('/refresh_token', {
+			withCredentials: true,
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+}, 300000);
 
 function App() {
 	return (

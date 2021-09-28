@@ -28,7 +28,9 @@ const Searcher = ({ videos }) => {
 					result = res.data;
 					setFilteredData(result);
 					console.log(result);
-					setResultsStyle('list-group');
+					if (result.length > 0) {
+						setResultsStyle('list-group');
+					}
 				})
 				.catch((err) => {
 					console.log(err);
@@ -37,9 +39,8 @@ const Searcher = ({ videos }) => {
 				});
 		}
 		if (value.length !== 0) {
-			if (result.length !== 0) {
-				setResultsStyle('list-group');
-			} else {
+
+			if (result.length === 0) {
 				setResultsStyle('none');
 			}
 		} else {
