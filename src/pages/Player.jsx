@@ -5,8 +5,11 @@ import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Carousel from '../components/Carousel';
+import { setFavorite, deleateFavorite } from '../actions';
 
-const Player = (props) => {
+const Player = (props, { setFavorite, deleateFavorite }) => {
+	const [Favlist, setFavlist] = useState([]);
+
 	const { id } = useParams();
 
 	const [VideoData, setVideoData] = useState({});
@@ -38,6 +41,7 @@ const Player = (props) => {
 				history.push('/login');
 			});
 		setVideoUrl(`http://${serverIp}/video/${id}`);
+		setFavlist(props.favList);
 		axios
 			.get(`http://${serverIp}/recomendations/${id}`, {
 				withCredentials: true,
@@ -47,27 +51,70 @@ const Player = (props) => {
 			});
 	}, []);
 
+	useEffect(() => {
+		setVideoUrl(`http://${serverIp}/video/${id}`);
+		axios
+			.get(`http://${serverIp}/recomendations/${id}`, {
+				withCredentials: true,
+			})
+			.then((response) => {
+				setRecomendations(response.data);
+			});
+	}, [props.match.params.id]);
+
+	useEffect(() => {
+		setFavlist(props.favList);
+	}, [props.favList]);
+
 	return (
-		<main className='VideoPlayer'>
-			<div>
-				<button type='button' onClick={() => props.history.goBack()}>
-					<FontAwesomeIcon
-						icon={['fas', 'step-backward']}
-						size='2x'
-					/>
-				</button>
-				<h1>{VideoData.name}</h1>
+		<main className='VideoContainer'>
+			<div className='videoPlayer'>
+				<video controls autoPlay muted src={VideoUrl}></video>
+				<div className='info'>
+					<button
+						type='button'
+						onClick={() => props.history.goBack()}
+					>
+						<FontAwesomeIcon
+							icon={['fas', 'step-backward']}
+							size='2x'
+						/>
+					</button>
+					<h1>{VideoData.name}</h1>
+				</div>
 			</div>
-			<video controls autoPlay muted src={VideoUrl}></video>
-			<Carousel serverIp={serverIp} videos={Recomendations} />
+			<div>
+				<section className='favorites'>
+					<h1>Favorites</h1>
+					<Carousel
+						serverIp={serverIp}
+						cardStyle='card2'
+						videos={Favlist}
+						islist={true}
+					/>
+				</section>
+				<section className='recomendations'>
+					<Carousel
+						serverIp={serverIp}
+						cardStyle='card2'
+						videos={Recomendations}
+						islist={false}
+					/>
+				</section>
+			</div>
 		</main>
 	);
 };
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.user,
+		favList: state.favList,
 	};
 };
 
-export default connect(mapStateToProps, null)(Player);
+const mapDispatchToProps = {
+	setFavorite,
+	deleateFavorite,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);

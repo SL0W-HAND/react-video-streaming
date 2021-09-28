@@ -49,6 +49,7 @@ const Home = (props) => {
 					serverIp={ServerIp}
 					videos={Favlist}
 					cardStyle='card1'
+					islist={true}
 				/>
 			</div>
 			<section className='videos'>

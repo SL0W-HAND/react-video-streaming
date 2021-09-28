@@ -47,21 +47,21 @@ const Login = () => {
 
 	return (
 		<form className='Login' onSubmit={sendLogin}>
+			<span>
+				<h1>🎬</h1>
+			</span>
 			<fieldset>
-				<legend>Enter the password</legend>
-				<div className='form-group'>
+				<legend>Password</legend>
+				<div className='form'>
 					<input
 						type='password'
-						className='form-control'
 						id='exampleInputPassword1'
 						placeholder='Password'
 						onChange={handleInputChange}
 						name='password'
 					/>
 				</div>
-				<button type='submit' className='btn btn-primary'>
-					Send
-				</button>
+				<button type='submit'>Send</button>
 			</fieldset>
 		</form>
 	);

@@ -1,18 +1,56 @@
 .Login {
 	width: 90vw;
 	max-width: 600px;
-	height: auto;
-	background-color: rgba(255, 255, 255, 0.4);
+	height: 80vh;
+	background-color: #fff;
 	margin: 15px auto;
 	padding: 10px;
-	border-radius: 0.5rem;
-	@include media(tablet) {
-		fieldset {
-			width: 500px;
-			margin: auto;
-		}
+	border-radius: 15px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	span {
+		font-size: 1.5rem;
+		background-color: $prymary-color;
+		width: 5rem;
+		height: 5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
 	}
-	button {
+	fieldset {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		margin-top: 20px;
+		legend {
+			width: 100px;
+			margin: 0 auto;
+		}
+		input {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			height: 2.5rem;
+			border-radius: 5px;
+			font-size: 1rem;
+			width: 220px;
+			margin: 20px 0;
+			&:focus {
+				outline: $prymary-color solid 1px;
+			}
+		}
+		button {
+			background-color: $prymary-color;
+			width: 190px;
+			height: 2.6rem;
+			font-size: 1.5rem;
+			border-radius: 1.3rem;
+			margin: 0 auto;
+			color: #fff;
+		}
 	}
 }
