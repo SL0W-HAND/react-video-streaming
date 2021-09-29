@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+//libraries
 import axios from 'axios';
 import ipServer from '../ipConfig';
-import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 	const history = useHistory();
@@ -33,7 +35,7 @@ const Login = () => {
 			)
 			.then((response) => {
 				localStorage.setItem('authenticated', response.data.auth);
-				if (response.data.auth == true) {
+				if (response.data.auth === true) {
 					history.push('/');
 				} else {
 					//error mesage

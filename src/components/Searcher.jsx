@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+
+//libraries
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+
+//components
 import serverIp from '../ipConfig';
 
-const Searcher = ({ videos }) => {
+const Searcher = () => {
 	const [filteredData, setFilteredData] = useState([]);
 
 	const [InputValue, setInputValue] = useState('');
@@ -17,8 +20,10 @@ const Searcher = ({ videos }) => {
 	const handleSearch = (event) => {
 		let result = [];
 		let value = event.target.value.toLowerCase();
+		//setting the input value
 		value = value.split(' ').join('_');
 		setInputValue(value);
+
 		if (value.length > 0) {
 			axios
 				.get(`http://${serverIp}/videos/search/${value}`, {
@@ -38,8 +43,9 @@ const Searcher = ({ videos }) => {
 					localStorage.setItem('authenticated', false);
 				});
 		}
-		if (value.length !== 0) {
 
+		//manage styles of results div
+		if (value.length !== 0) {
 			if (result.length === 0) {
 				setResultsStyle('none');
 			}
@@ -49,6 +55,7 @@ const Searcher = ({ videos }) => {
 		}
 	};
 
+	//redirect to sarch page
 	const handleClick = (event) => {
 		event.preventDefault();
 		console.log(InputValue);
@@ -60,6 +67,7 @@ const Searcher = ({ videos }) => {
 			//prevent default and bootstrap alert
 		}
 	};
+
 	const cleanResults = () => {
 		setFilteredData([]);
 		setResultsStyle('none');
@@ -91,10 +99,4 @@ const Searcher = ({ videos }) => {
 	);
 };
 
-const mapStateToProps = (state) => {
-	return {
-		videos: state.videos,
-	};
-};
-
-export default connect(mapStateToProps, null)(Searcher);
+export default Searcher;

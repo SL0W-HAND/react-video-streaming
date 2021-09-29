@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, compose } from 'redux';
+
+//libraries
 import reducer from './reducers/index';
 import serverIp from './ipConfig.js';
 

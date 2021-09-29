@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import serverIp from '../ipConfig.js';
 import { connect } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Carousel from '../components/Carousel';
+
+//libraries
 import { setFavorite, deleateFavorite } from '../actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import { useHistory, useParams } from 'react-router-dom';
+import serverIp from '../ipConfig.js';
+
+//componets
+import Carousel from '../components/Carousel';
 
 const Player = (props, { setFavorite, deleateFavorite }) => {
 	const [Favlist, setFavlist] = useState([]);
@@ -18,7 +22,7 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 
 	const [Recomendations, setRecomendations] = useState([]);
 
-	const [Colapsable, setColapsable] = useState('open')
+	const [Colapsable, setColapsable] = useState('open');
 
 	const history = useHistory();
 
@@ -42,7 +46,9 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 				localStorage.setItem('authenticated', false);
 				history.push('/login');
 			});
+
 		setVideoUrl(`http://${serverIp}/video/${id}`);
+
 		setFavlist(props.favList);
 		axios
 			.get(`http://${serverIp}/recomendations/${id}`, {
@@ -50,6 +56,9 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 			})
 			.then((response) => {
 				setRecomendations(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 	}, []);
 
@@ -61,6 +70,9 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 			})
 			.then((response) => {
 				setRecomendations(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
 			});
 	}, [props.match.params.id]);
 
@@ -89,22 +101,21 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 				<section className='favorites'>
 					<div className='favorites_title'>
 						<h1>Favorites</h1>
-						{Colapsable === 'open' ?
+						{Colapsable === 'open' ? (
 							<FontAwesomeIcon
 								icon={['fas', 'chevron-down']}
 								size='2x'
 								onClick={() => setColapsable('close')}
 								className='colapsable_icon'
 							/>
-							:
+						) : (
 							<FontAwesomeIcon
 								icon={['fas', 'chevron-right']}
 								size='2x'
 								onClick={() => setColapsable('open')}
 								className='colapsable_icon'
-
 							/>
-						}
+						)}
 					</div>
 					<div className={Colapsable}>
 						<Carousel

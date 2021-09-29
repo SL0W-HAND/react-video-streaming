@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+//libraries
+import axios from 'axios';
+
 //Components
 import VideoCard from '../components/VideoCard';
 import Carousel from '../components/Carousel';
 import Pagination from '../components/Pagination';
-import axios from 'axios';
 
 const Home = (props) => {
 	const [Favlist, setFavlist] = useState([]);
@@ -26,7 +29,6 @@ const Home = (props) => {
 				withCredentials: true,
 			})
 			.then((res) => {
-				console.log(res.data);
 				setVideos(res.data.videos);
 				setcurrentPage(res.data.page);
 				settotalPages(res.data.total_pages);
@@ -46,7 +48,7 @@ const Home = (props) => {
 
 	useEffect(() => {
 		setFavlist(props.favList);
-	});
+	}, [props.favList]);
 
 	if (!localStorage.getItem('authenticated')) {
 		history.push('/login');
@@ -72,13 +74,13 @@ const Home = (props) => {
 				<div className='vid-container'>
 					{Videos !== 0
 						? Videos.map((video) => (
-							<VideoCard
-								key={video.id}
-								{...video}
-								serverIp={ServerIp}
-								cardStyle='card1'
-							/>
-						))
+								<VideoCard
+									key={video.id}
+									{...video}
+									serverIp={ServerIp}
+									cardStyle='card1'
+								/>
+						  ))
 						: null}
 				</div>
 			</section>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Error404 from '../components/Error404';
 import { useHistory } from 'react-router-dom';
+import Error404 from '../components/Error404';
 
 const NotFound = () => {
 	const history = useHistory();

@@ -1,8 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router';
 
 const Pagination = ({ currentPage, totalPages }) => {
-	const history = useHistory();
 	const handleClick = (index) => {
 		currentPage(index);
 	};
@@ -18,7 +16,6 @@ const Pagination = ({ currentPage, totalPages }) => {
 			{pages.map((page) => {
 				return (
 					<li>
-
 						<button
 							onClick={() => {
 								handleClick(page);

@@ -6,9 +6,10 @@ import axios from 'axios';
 import Searcher from './Searcher';
 import serverIp from '../ipConfig';
 
-const Navbar = (props) => {
+const Navbar = () => {
 	const history = useHistory();
 
+	//handle random button click
 	const handleClick = () => {
 		axios
 			.get(`http://${serverIp}/random`, { withCredentials: true })

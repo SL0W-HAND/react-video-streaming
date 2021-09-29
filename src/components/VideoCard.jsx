@@ -1,9 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setFavorite, deleateFavorite } from '../actions';
+
+//libraries
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+//components
+import { setFavorite, deleateFavorite } from '../actions';
 
 const VideoCard = ({
 	name,
@@ -73,12 +76,6 @@ const VideoCard = ({
 			</div>
 		</div>
 	);
-};
-
-VideoCard.propTypes = {
-	serverIp: PropTypes.string,
-	name: PropTypes.string,
-	id: PropTypes.number,
 };
 
 const mapDispatchToProps = {

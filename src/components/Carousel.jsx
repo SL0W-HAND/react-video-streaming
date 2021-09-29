@@ -19,7 +19,7 @@ const Carousel = ({ videos, serverIp, cardStyle, islist }) => {
 				</div>
 			) : (
 				<div className='not_elements'>
-					<img src={Not_Found} alt='not found image' />
+					<img src={Not_Found} alt='not found ' />
 					<span>
 						<h3>You dont have nothing here, add something</h3>
 					</span>
