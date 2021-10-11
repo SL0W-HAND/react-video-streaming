@@ -4,11 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 //libraries
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-
-//components
+import { connect } from 'react-redux';
 import serverIp from '../ipConfig';
+import { setAuthenticated } from '../actions';
 
-const Searcher = () => {
+const Searcher = ({ setAuthenticated }) => {
 	const [filteredData, setFilteredData] = useState([]);
 
 	const [InputValue, setInputValue] = useState('');
@@ -30,6 +30,9 @@ const Searcher = () => {
 					withCredentials: true,
 				})
 				.then((res) => {
+					if (res.status !== 200) {
+						setAuthenticated(false);
+					}
 					result = res.data;
 					setFilteredData(result);
 					console.log(result);
@@ -39,8 +42,7 @@ const Searcher = () => {
 				})
 				.catch((err) => {
 					console.log(err);
-					history.push('/login');
-					localStorage.setItem('authenticated', false);
+					setAuthenticated(false);
 				});
 		}
 
@@ -99,4 +101,8 @@ const Searcher = () => {
 	);
 };
 
-export default Searcher;
+const mapDispatchToProps = {
+	setAuthenticated,
+};
+
+export default connect(null, mapDispatchToProps)(Searcher);

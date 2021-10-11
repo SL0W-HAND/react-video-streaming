@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import Searcher from './Searcher';
+import { setAuthenticated } from '../actions/index';
+import { connect } from 'react-redux';
 import serverIp from '../ipConfig';
 
-const Navbar = () => {
+//components
+import Searcher from './Searcher';
+
+const Navbar = ({ setAuthenticated }) => {
 	const history = useHistory();
 
 	//handle random button click
@@ -17,8 +21,7 @@ const Navbar = () => {
 				history.push(`/player/${res.data.id}`);
 			})
 			.catch((err) => {
-				localStorage.setItem('authenticated', false);
-				history.push('/login');
+				setAuthenticated(false);
 			});
 	};
 	return (
@@ -59,4 +62,8 @@ const Navbar = () => {
 	);
 };
 
-export default Navbar;
+const mapDispatchToProps = {
+	setAuthenticated,
+};
+
+export default connect(null, mapDispatchToProps)(Navbar);

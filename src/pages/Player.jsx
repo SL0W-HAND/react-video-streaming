@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 //libraries
-import { setFavorite, deleateFavorite } from '../actions';
+import { setFavorite, deleateFavorite, setAuthenticated } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
@@ -10,8 +10,9 @@ import serverIp from '../ipConfig.js';
 
 //componets
 import Carousel from '../components/Carousel';
+import Navbar from '../components/Navbar';
 
-const Player = (props, { setFavorite, deleateFavorite }) => {
+const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 	const [Favlist, setFavlist] = useState([]);
 
 	const { id } = useParams();
@@ -37,14 +38,12 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 			})
 			.then((response) => {
 				if (response.status !== 200) {
-					history.push('/login');
-					localStorage.setItem('authenticated', false);
+					setAuthenticated(false);
 				}
 				setVideoData(response.data);
 			})
 			.catch((error) => {
-				localStorage.setItem('authenticated', false);
-				history.push('/login');
+				setAuthenticated(false);
 			});
 
 		setVideoUrl(`http://${serverIp}/video/${id}`);
@@ -60,6 +59,7 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 			.catch((error) => {
 				console.log(error);
 			});
+		console.log(props);
 	}, []);
 
 	useEffect(() => {
@@ -81,61 +81,62 @@ const Player = (props, { setFavorite, deleateFavorite }) => {
 	}, [props.favList]);
 
 	return (
-		<main className='VideoContainer'>
-			<div className='videoPlayer'>
-				<video controls autoPlay muted src={VideoUrl}></video>
-				<div className='info'>
-					<button
-						type='button'
-						onClick={() => props.history.goBack()}
-					>
-						<FontAwesomeIcon
-							icon={['fas', 'step-backward']}
-							size='2x'
-						/>
-					</button>
-					<h1>{VideoData.name}</h1>
+		<div className='Layout'>
+			<Navbar />
+			<main className='VideoContainer'>
+				<div className='videoPlayer'>
+					<video controls autoPlay muted src={VideoUrl}></video>
+					<div className='info'>
+						<button
+							type='button'
+							onClick={() => props.history.goBack()}
+						>
+							<FontAwesomeIcon
+								icon={['fas', 'step-backward']}
+								size='2x'
+							/>
+						</button>
+						<h1>{VideoData.name}</h1>
+					</div>
 				</div>
-			</div>
-			<div>
-				<section className='favorites'>
-					<div className='favorites_title'>
-						<h1>Favorites</h1>
-						{Colapsable === 'open' ? (
-							<FontAwesomeIcon
-								icon={['fas', 'chevron-down']}
-								size='2x'
-								onClick={() => setColapsable('close')}
-								className='colapsable_icon'
+				<div>
+					<section className='favorites'>
+						<div className='favorites_title'>
+							<h1>Favorites</h1>
+							{Colapsable === 'open' ? (
+								<FontAwesomeIcon
+									icon={['fas', 'chevron-down']}
+									size='2x'
+									onClick={() => setColapsable('close')}
+									className='colapsable_icon'
+								/>
+							) : (
+								<FontAwesomeIcon
+									icon={['fas', 'chevron-right']}
+									size='2x'
+									onClick={() => setColapsable('open')}
+									className='colapsable_icon'
+								/>
+							)}
+						</div>
+						<div className={Colapsable}>
+							<Carousel
+								cardStyle='card2'
+								videos={Favlist}
+								islist={true}
 							/>
-						) : (
-							<FontAwesomeIcon
-								icon={['fas', 'chevron-right']}
-								size='2x'
-								onClick={() => setColapsable('open')}
-								className='colapsable_icon'
-							/>
-						)}
-					</div>
-					<div className={Colapsable}>
+						</div>
+					</section>
+					<section className='recomendations'>
 						<Carousel
-							serverIp={serverIp}
 							cardStyle='card2'
-							videos={Favlist}
-							islist={true}
+							videos={Recomendations}
+							islist={false}
 						/>
-					</div>
-				</section>
-				<section className='recomendations'>
-					<Carousel
-						serverIp={serverIp}
-						cardStyle='card2'
-						videos={Recomendations}
-						islist={false}
-					/>
-				</section>
-			</div>
-		</main>
+					</section>
+				</div>
+			</main>
+		</div>
 	);
 };
 
@@ -148,6 +149,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
 	setFavorite,
 	deleateFavorite,
+	setAuthenticated,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

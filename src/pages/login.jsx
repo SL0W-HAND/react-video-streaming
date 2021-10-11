@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 //libraries
 import axios from 'axios';
-import ipServer from '../ipConfig';
+import serverIp from '../ipConfig';
+import { setAuthenticated } from '../actions/index';
 
-const Login = () => {
+const Login = ({ setAuthenticated }) => {
 	const history = useHistory();
 
 	const [data, setData] = useState({
@@ -21,29 +23,32 @@ const Login = () => {
 
 	const sendLogin = (event) => {
 		event.preventDefault();
-
+		axios.defaults.withCredentials = true;
 		axios
 			.post(
-				`http://${ipServer}/signin`,
+				`http://${serverIp}/login`,
 				{
 					password: data.password,
 				},
 				{
-					headers: { 'Content-Type': 'application/json' },
-					withCredentials: true,
+					headers: {
+						crossDomain: true,
+						'Content-Type': 'application/json',
+					},
 				}
 			)
 			.then((response) => {
-				localStorage.setItem('authenticated', response.data.auth);
 				if (response.data.auth === true) {
+					setAuthenticated(true);
 					history.push('/');
 				} else {
 					//error mesage
+
+					setAuthenticated(false);
 				}
 			})
 			.catch((error) => {
-				localStorage.setItem('authenticated', false);
-				console.log(error);
+				setAuthenticated(false);
 			});
 	};
 
@@ -69,4 +74,8 @@ const Login = () => {
 	);
 };
 
-export default Login;
+const mapDispatchToProps = {
+	setAuthenticated,
+};
+
+export default connect(null, mapDispatchToProps)(Login);

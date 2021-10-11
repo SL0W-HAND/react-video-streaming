@@ -2,7 +2,7 @@ import React from 'react';
 import VideoCard from './VideoCard';
 import Not_Found from '../assets/Not_found.png';
 
-const Carousel = ({ videos, serverIp, cardStyle, islist }) => {
+const Carousel = ({ videos, cardStyle, islist }) => {
 	return (
 		<React.Fragment>
 			{videos.length ? (
@@ -11,7 +11,6 @@ const Carousel = ({ videos, serverIp, cardStyle, islist }) => {
 						<VideoCard
 							key={video.id}
 							{...video}
-							serverIp={serverIp}
 							isList={islist}
 							cardStyle={cardStyle}
 						/>

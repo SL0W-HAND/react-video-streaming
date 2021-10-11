@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 //libraries
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import serverIp from '../ipConfig';
+import { setAuthenticated } from '../actions/index';
 
 //components
 import VideoCard from '../components/VideoCard';
 import Error404 from '../components/Error404';
+import Navbar from '../components/Navbar';
 
-const Results = (props) => {
+const Results = (props, { setAuthenticated }) => {
 	const params = props.match.params.id.split('_').join(' ');
 
 	const history = useHistory();
@@ -22,7 +25,7 @@ const Results = (props) => {
 
 	useEffect(() => {
 		axios
-			.get(`http://${props.serverIp}/videos/search_results/${params}`, {
+			.get(`http://${serverIp}/videos/search_results/${params}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -30,12 +33,12 @@ const Results = (props) => {
 			})
 			.catch((err) => {
 				console.log(err);
-				localStorage.setItem('authenticated', false);
+				setAuthenticated(false);
 			});
 	}, []);
 	useEffect(() => {
 		axios
-			.get(`http://${props.serverIp}/videos/search_results/${params}`, {
+			.get(`http://${serverIp}/videos/search_results/${params}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -43,46 +46,54 @@ const Results = (props) => {
 			})
 			.catch((err) => {
 				console.log(err);
-				localStorage.setItem('authenticated', false);
+				setAuthenticated(false);
 			});
 	}, [props.match.params.id]);
 
 	return (
-		<main className='Home-container'>
-			<section className='videos'>
-				{AllVideos.length === 0 ? null : (
-					<span>
-						<h2>Results for "{props.match.params.id}"</h2>
-					</span>
-				)}
-				<div className='vid-container'>
-					{AllVideos.length === 0 ? (
-						<div className='notfound'>
-							<h1>Not results</h1>
-							<Error404 />
-						</div>
-					) : (
-						AllVideos[0].videos.map((video) => (
-							<VideoCard
-								key={video.id}
-								{...video}
-								serverIp={props.serverIp}
-								cardStyle='card1'
-							/>
-						))
+		<div className='Layout'>
+			<Navbar />
+
+			<main className='Home-container'>
+				<section className='videos'>
+					{AllVideos.length === 0 ? null : (
+						<span>
+							<h2>Results for "{props.match.params.id}"</h2>
+						</span>
 					)}
-				</div>
-			</section>
-		</main>
+					<div className='vid-container'>
+						{AllVideos.length === 0 ? (
+							<div className='notfound'>
+								<h1>
+									Not results for "{props.match.params.id}"
+								</h1>
+								<Error404 />
+							</div>
+						) : (
+							AllVideos[0].videos.map((video) => (
+								<VideoCard
+									key={video.id}
+									{...video}
+									cardStyle='card1'
+								/>
+							))
+						)}
+					</div>
+				</section>
+			</main>
+		</div>
 	);
 };
 
 const mapStateToProps = (state) => {
 	return {
 		videos: state.videos,
-		serverIp: state.serverIp,
 		user: state.user,
 	};
 };
 
-export default connect(mapStateToProps, null)(Results);
+const mapDispatchToProps = {
+	setAuthenticated,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

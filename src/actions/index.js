@@ -8,7 +8,7 @@ export const deleateFavorite = (payload) => ({
 	payload,
 });
 
-export const authenticated = (payload) => ({
+export const setAuthenticated = (payload) => ({
 	type: 'AUTHENTICATED',
 	payload,
 });

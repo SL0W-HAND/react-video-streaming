@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import ServerIp from '../ipConfig';
 
 //libraries
 import axios from 'axios';
+import { setAuthenticated } from '../actions/index';
 
 //Components
 import VideoCard from '../components/VideoCard';
 import Carousel from '../components/Carousel';
 import Pagination from '../components/Pagination';
+import Navbar from '../components/Navbar';
 
-const Home = (props) => {
+const Home = (props, { setAuthenticated }) => {
 	const [Favlist, setFavlist] = useState([]);
-
-	const [ServerIp, setServerIp] = useState('');
 
 	const [Videos, setVideos] = useState([]);
 
@@ -21,11 +21,9 @@ const Home = (props) => {
 
 	const [totalPages, settotalPages] = useState(1);
 
-	const history = useHistory();
-
 	const fetchData = async () => {
 		axios
-			.get(`http://${props.serverIp}/videos/${currentPage}`, {
+			.get(`http://${ServerIp}/videos/${currentPage}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -34,15 +32,14 @@ const Home = (props) => {
 				settotalPages(res.data.total_pages);
 			})
 			.catch((err) => {
+				setAuthenticated(false);
 				console.log(err);
-				sessionStorage.clear();
-				history.push('/login');
 			});
 	};
 
 	useEffect(() => {
 		setFavlist(props.favList);
-		setServerIp(props.serverIp);
+
 		fetchData();
 	}, []);
 
@@ -50,58 +47,58 @@ const Home = (props) => {
 		setFavlist(props.favList);
 	}, [props.favList]);
 
-	if (!localStorage.getItem('authenticated')) {
-		history.push('/login');
-	}
-
 	return (
-		<main className='Home-container'>
-			<div className='fav-videos'>
-				<span>
-					<h2>Favorite videos</h2>
-				</span>
-				<Carousel
-					serverIp={ServerIp}
-					videos={Favlist}
-					cardStyle='card1'
-					islist={true}
-				/>
-			</div>
-			<section className='videos'>
-				<span>
-					<h2>Videos</h2>
-				</span>
-				<div className='vid-container'>
-					{Videos !== 0
-						? Videos.map((video) => (
-								<VideoCard
-									key={video.id}
-									{...video}
-									serverIp={ServerIp}
-									cardStyle='card1'
-								/>
-						  ))
-						: null}
-				</div>
-			</section>
-			<p>{currentPage}</p>
-			<p>{totalPages}</p>
+		<div className='Layout'>
+			<Navbar />
 
-			{totalPages > 1 ? (
-				<Pagination
-					currentPage={setcurrentPage}
-					totalPages={totalPages}
-				/>
-			) : null}
-		</main>
+			<main className='Home-container'>
+				<div className='fav-videos'>
+					<span>
+						<h2>Favorite videos</h2>
+					</span>
+					<Carousel
+						videos={Favlist}
+						cardStyle='card1'
+						islist={true}
+					/>
+				</div>
+				<section className='videos'>
+					<span>
+						<h2>Videos</h2>
+					</span>
+					<div className='vid-container'>
+						{Videos !== 0
+							? Videos.map((video) => (
+									<VideoCard
+										key={video.id}
+										{...video}
+										cardStyle='card1'
+									/>
+							  ))
+							: null}
+					</div>
+				</section>
+				<p>{currentPage}</p>
+				<p>{totalPages}</p>
+
+				{totalPages > 1 ? (
+					<Pagination
+						currentPage={setcurrentPage}
+						totalPages={totalPages}
+					/>
+				) : null}
+			</main>
+		</div>
 	);
 };
 
 const mapStateToProps = (state) => {
 	return {
-		serverIp: state.serverIp,
 		favList: state.favList,
 	};
 };
+const mapDispatchToProps = {
+	setAuthenticated,
+};
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 
 //libraries
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-//components
 import { setFavorite, deleateFavorite } from '../actions';
+import serverIp from '../ipConfig';
 
 const VideoCard = ({
 	name,
-	serverIp,
 	id,
 	duration,
 	setFavorite,
@@ -21,7 +19,6 @@ const VideoCard = ({
 	const handleSetFavorite = () => {
 		setFavorite({
 			name,
-			serverIp,
 			id,
 			duration,
 		});
