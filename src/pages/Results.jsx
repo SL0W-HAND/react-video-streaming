@@ -25,7 +25,7 @@ const Results = (props, { setAuthenticated }) => {
 
 	useEffect(() => {
 		axios
-			.get(`http://${serverIp}/videos/search_results/${params}`, {
+			.get(`/videos/search_results/${params}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -40,7 +40,7 @@ const Results = (props, { setAuthenticated }) => {
 	}, []);
 	useEffect(() => {
 		axios
-			.get(`http://${serverIp}/videos/search_results/${params}`, {
+			.get(`/videos/search_results/${params}`, {
 				withCredentials: true,
 			})
 			.then((res) => {

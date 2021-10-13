@@ -34,7 +34,7 @@ const VideoCard = ({
 		<div className={cardStyle}>
 			<Link style={{ textDecoration: 'none' }} to={`/player/${_id}`}>
 				<img
-					src={`http://${serverIp}/video/${_id}/poster`}
+					src={`/video/${_id}/poster`}
 					className='d-block user-select-none'
 					alt={name}
 				/>

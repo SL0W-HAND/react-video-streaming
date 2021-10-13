@@ -17,7 +17,7 @@ const Navbar = ({ setAuthenticated }) => {
 	//handle random button click
 	const handleClick = () => {
 		axios
-			.get(`http://${serverIp}/random`, { withCredentials: true })
+			.get(`/random`, { withCredentials: true })
 			.then((res) => {
 				history.push(`/player/${res.data._id}`);
 			})

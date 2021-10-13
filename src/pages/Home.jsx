@@ -24,7 +24,7 @@ const Home = (props, { setAuthenticated }) => {
 
 	const fetchData = async () => {
 		axios
-			.get(`http://${ServerIp}/videos/${currentPage}`, {
+			.get(`/videos/${currentPage}`, {
 				withCredentials: true,
 			})
 			.then((res) => {

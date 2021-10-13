@@ -27,7 +27,7 @@ const Searcher = ({ setAuthenticated }) => {
 
 		if (value.length > 0) {
 			axios
-				.get(`http://${serverIp}/videos/search/${value}`, {
+				.get(`/videos/search/${value}`, {
 					withCredentials: true,
 				})
 				.then((res) => {

@@ -27,7 +27,7 @@ const Login = ({ setAuthenticated }) => {
 		axios.defaults.withCredentials = true;
 		axios
 			.post(
-				`http://${serverIp}/login`,
+				`/login`,
 				{
 					password: data.password,
 				},

@@ -59,7 +59,7 @@ function App({ authenticatedState, setAuthenticated }) {
 
 	React.useEffect(() => {
 		axios
-			.get(`http://${serverIp}/refresh_token`, {
+			.get(`/refresh_token`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -91,7 +91,7 @@ function App({ authenticatedState, setAuthenticated }) {
 	//every 5 minutes, make a request to the server to get the latest token
 	setInterval(() => {
 		axios
-			.get(`http://${serverIp}/refresh_token`, {
+			.get(`/refresh_token`, {
 				withCredentials: true,
 			})
 			.catch((err) => {

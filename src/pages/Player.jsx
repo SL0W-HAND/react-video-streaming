@@ -34,7 +34,7 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 
 	useEffect(() => {
 		axios
-			.get(`http://${serverIp}/video/${props.match.params.id}/data`, {
+			.get(`/video/${props.match.params.id}/data`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -47,11 +47,11 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 				setAuthenticated(false);
 			});
 
-		setVideoUrl(`http://${serverIp}/video/${id}`);
+		setVideoUrl(`/video/${id}`);
 
 		setFavlist(props.favList);
 		axios
-			.get(`http://${serverIp}/recomendations/${id}`, {
+			.get(`/recomendations/${id}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -64,9 +64,9 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 	}, []);
 
 	useEffect(() => {
-		setVideoUrl(`http://${serverIp}/video/${id}`);
+		setVideoUrl(`/video/${id}`);
 		axios
-			.get(`http://${serverIp}/recomendations/${id}`, {
+			.get(`/recomendations/${id}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -76,7 +76,7 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 				console.log(error);
 			});
 		axios
-			.get(`http://${serverIp}/video/${props.match.params.id}/data`, {
+			.get(`/video/${props.match.params.id}/data`, {
 				withCredentials: true,
 			})
 			.then((response) => {
