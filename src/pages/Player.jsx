@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import serverIp from '../ipConfig.js';
+import devConfig from '../devConfig';
 
 //componets
 import Carousel from '../components/Carousel';
@@ -73,6 +74,19 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 			})
 			.catch((error) => {
 				console.log(error);
+			});
+		axios
+			.get(`http://${serverIp}/video/${props.match.params.id}/data`, {
+				withCredentials: true,
+			})
+			.then((response) => {
+				if (response.status !== 200) {
+					setAuthenticated(false);
+				}
+				setVideoData(response.data);
+			})
+			.catch((error) => {
+				setAuthenticated(false);
 			});
 	}, [props.match.params.id]);
 

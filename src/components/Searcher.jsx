@@ -7,6 +7,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import serverIp from '../ipConfig';
 import { setAuthenticated } from '../actions';
+import devConfig from '../devConfig';
 
 const Searcher = ({ setAuthenticated }) => {
 	const [filteredData, setFilteredData] = useState([]);
@@ -91,7 +92,10 @@ const Searcher = ({ setAuthenticated }) => {
 			<ul className={ResultsStyle}>
 				{filteredData.map((video) => (
 					<li key={`link${video.id}`}>
-						<Link onClick={cleanResults} to={`/player/${video.id}`}>
+						<Link
+							onClick={cleanResults}
+							to={`/player/${video._id}`}
+						>
 							{video.name}
 						</Link>
 					</li>

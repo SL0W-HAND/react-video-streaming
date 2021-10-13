@@ -1,7 +1,7 @@
 const reducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_FAVORITE':
-			if (state.favList.some((item) => item.id === action.payload.id)) {
+			if (state.favList.some((item) => item._id === action.payload._id)) {
 				return state;
 			} else {
 				return {
@@ -13,7 +13,7 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				favList: state.favList.filter(
-					(items) => items.id !== action.payload
+					(items) => items._id !== action.payload
 				),
 			};
 		case 'AUTHENTICATED':

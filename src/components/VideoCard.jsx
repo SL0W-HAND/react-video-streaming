@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setFavorite, deleateFavorite } from '../actions';
 import serverIp from '../ipConfig';
+import devConfig from '../devConfig';
 
 const VideoCard = ({
 	name,
-	id,
+	_id,
 	duration,
 	setFavorite,
 	deleateFavorite,
@@ -17,22 +18,23 @@ const VideoCard = ({
 	cardStyle,
 }) => {
 	const handleSetFavorite = () => {
+		console.log('set favorite');
 		setFavorite({
 			name,
-			id,
+			_id,
 			duration,
 		});
 	};
 
 	const handelDeleateFavorite = () => {
-		deleateFavorite(id);
+		deleateFavorite(_id);
 	};
 
 	return (
 		<div className={cardStyle}>
-			<Link style={{ textDecoration: 'none' }} to={`/player/${id}`}>
+			<Link style={{ textDecoration: 'none' }} to={`/player/${_id}`}>
 				<img
-					src={`http://${serverIp}/video/${id}/poster`}
+					src={`http://${serverIp}/video/${_id}/poster`}
 					className='d-block user-select-none'
 					alt={name}
 				/>
@@ -40,7 +42,7 @@ const VideoCard = ({
 			<div className='gradient' />
 
 			<div className='card_info'>
-				<Link style={{ textDecoration: 'none' }} to={`/player/${id}`}>
+				<Link style={{ textDecoration: 'none' }} to={`/player/${_id}`}>
 					<h3 className='name'>{name}</h3>
 				</Link>
 				<div className='info'>

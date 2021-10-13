@@ -50,7 +50,7 @@ const Loader = ({ auth }) => {
 	if (authenticated === false) {
 		return <Redirect to='/login' />;
 	} else {
-		return <div>loading</div>;
+		return <div className='spinner'></div>;
 	}
 };
 
@@ -91,7 +91,7 @@ function App({ authenticatedState, setAuthenticated }) {
 	//every 5 minutes, make a request to the server to get the latest token
 	setInterval(() => {
 		axios
-			.get('/refresh_token', {
+			.get(`http://${serverIp}/refresh_token`, {
 				withCredentials: true,
 			})
 			.catch((err) => {

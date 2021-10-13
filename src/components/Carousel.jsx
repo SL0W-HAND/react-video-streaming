@@ -9,7 +9,7 @@ const Carousel = ({ videos, cardStyle, islist }) => {
 				<div className='vid-container'>
 					{videos.map((video) => (
 						<VideoCard
-							key={video.id}
+							key={video._id}
 							{...video}
 							isList={islist}
 							cardStyle={cardStyle}

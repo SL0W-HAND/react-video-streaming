@@ -1,3 +1,5 @@
+//big bug here
+
 import React from 'react';
 
 const Pagination = ({ currentPage, totalPages }) => {

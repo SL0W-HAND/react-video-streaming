@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import serverIp from '../ipConfig';
+import devConfig from '../devConfig';
 import { setAuthenticated } from '../actions/index';
 
 //components
@@ -16,7 +17,6 @@ const Results = (props, { setAuthenticated }) => {
 	const params = props.match.params.id.split('_').join(' ');
 
 	const history = useHistory();
-
 	const [AllVideos, setAllVideos] = useState([]);
 
 	if (props.user === null) {
@@ -29,7 +29,9 @@ const Results = (props, { setAuthenticated }) => {
 				withCredentials: true,
 			})
 			.then((res) => {
-				setAllVideos(res.data);
+				console.log(res.data);
+				let videos = res.data;
+				setAllVideos(videos);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -42,6 +44,7 @@ const Results = (props, { setAuthenticated }) => {
 				withCredentials: true,
 			})
 			.then((res) => {
+				console.log('not found');
 				setAllVideos(res.data);
 			})
 			.catch((err) => {
@@ -70,7 +73,7 @@ const Results = (props, { setAuthenticated }) => {
 								<Error404 />
 							</div>
 						) : (
-							AllVideos[0].videos.map((video) => (
+							AllVideos.map((video) => (
 								<VideoCard
 									key={video.id}
 									{...video}

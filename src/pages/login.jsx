@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 //libraries
 import axios from 'axios';
 import serverIp from '../ipConfig';
+import devConfig from '../devConfig';
 import { setAuthenticated } from '../actions/index';
 
 const Login = ({ setAuthenticated }) => {

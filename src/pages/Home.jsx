@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ServerIp from '../ipConfig';
+import devConfig from '../devConfig';
 
 //libraries
 import axios from 'axios';
@@ -19,7 +20,7 @@ const Home = (props, { setAuthenticated }) => {
 
 	const [currentPage, setcurrentPage] = useState(1);
 
-	const [totalPages, settotalPages] = useState(1);
+	const [totalPages, setTotalPages] = useState(1);
 
 	const fetchData = async () => {
 		axios
@@ -27,9 +28,11 @@ const Home = (props, { setAuthenticated }) => {
 				withCredentials: true,
 			})
 			.then((res) => {
+				let page = res.data.page;
+				setcurrentPage(page);
+				let totalPages = parseInt(res.data.total_pages);
+				setTotalPages(totalPages);
 				setVideos(res.data.videos);
-				setcurrentPage(res.data.page);
-				settotalPages(res.data.total_pages);
 			})
 			.catch((err) => {
 				setAuthenticated(false);
@@ -70,7 +73,7 @@ const Home = (props, { setAuthenticated }) => {
 						{Videos !== 0
 							? Videos.map((video) => (
 									<VideoCard
-										key={video.id}
+										key={video._id}
 										{...video}
 										cardStyle='card1'
 									/>
@@ -78,15 +81,6 @@ const Home = (props, { setAuthenticated }) => {
 							: null}
 					</div>
 				</section>
-				<p>{currentPage}</p>
-				<p>{totalPages}</p>
-
-				{totalPages > 1 ? (
-					<Pagination
-						currentPage={setcurrentPage}
-						totalPages={totalPages}
-					/>
-				) : null}
 			</main>
 		</div>
 	);

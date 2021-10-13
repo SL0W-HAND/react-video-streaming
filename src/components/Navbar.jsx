@@ -6,6 +6,7 @@ import axios from 'axios';
 import { setAuthenticated } from '../actions/index';
 import { connect } from 'react-redux';
 import serverIp from '../ipConfig';
+import devConfig from '../devConfig';
 
 //components
 import Searcher from './Searcher';
@@ -18,7 +19,7 @@ const Navbar = ({ setAuthenticated }) => {
 		axios
 			.get(`http://${serverIp}/random`, { withCredentials: true })
 			.then((res) => {
-				history.push(`/player/${res.data.id}`);
+				history.push(`/player/${res.data._id}`);
 			})
 			.catch((err) => {
 				setAuthenticated(false);
