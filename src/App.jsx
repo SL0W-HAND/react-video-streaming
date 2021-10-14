@@ -48,7 +48,7 @@ library.add(
 const Loader = ({ auth }) => {
 	const authenticated = auth;
 	if (authenticated === false) {
-		return <Redirect to='/login' />;
+		return <Redirect to='/sign_in' />;
 	} else {
 		return <div className='spinner'></div>;
 	}
@@ -118,7 +118,7 @@ function App({ authenticatedState, setAuthenticated }) {
 						)
 					}
 				/>
-				<Route exact path='/login' component={Login} />
+				<Route exact path='/sign_in' component={Login} />
 				<Route
 					exact
 					path='/player/:id'

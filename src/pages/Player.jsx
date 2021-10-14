@@ -28,9 +28,6 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 
 	const history = useHistory();
 
-	if (!localStorage.getItem('authenticated')) {
-		history.push('/login');
-	}
 
 	useEffect(() => {
 		axios
@@ -86,6 +83,7 @@ const Player = (props, { setFavorite, deleateFavorite, setAuthenticated }) => {
 				setVideoData(response.data);
 			})
 			.catch((error) => {
+				console.log(error);
 				setAuthenticated(false);
 			});
 	}, [props.match.params.id]);
